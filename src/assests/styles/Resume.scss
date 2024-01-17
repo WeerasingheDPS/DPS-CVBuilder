@@ -1,0 +1,95 @@
+.edit-personal-details-w{
+
+    .input-w{
+        background-color: rgba(243,244,246,255);
+        border: none;
+        outline: none !important;
+        border-radius: 0;
+        &:hover{
+            border: none !important;
+            outline: none !important;
+        }
+        &:focus{
+            border: none;
+        }
+    }
+}
+
+.add-content-w{
+    .input-w{
+        background-color: rgba(243,244,246,255);
+        border: none;
+        outline: none !important;
+        border-radius: 0;
+        &:hover{
+            border: none !important;
+            outline: none !important;
+        }
+        &:focus{
+            border: none;
+        }
+    } 
+    .select-month-w{
+        .ant-select-selector{
+            width: 110px !important;
+            background-color: rgba(243,244,246,255);
+        border: none;
+        outline: none !important;
+        border-radius: 0;
+        &:hover{
+            border: none !important;
+            outline: none !important;
+        }
+        &:focus{
+            border: none;
+        }
+        }
+        border-radius: 0 !important;
+        background-color: rgba(243,244,246,255);
+        div{
+            border-radius: 0 !important;
+           
+            width: 100% !important;
+        }
+    }
+    .ql-editor{
+    min-height: 25vh;
+    max-width: 80vh;
+    }
+}
+
+.personal-details-edit-view-w{
+    .has-name-w{
+        margin: 0;
+        font-size: 20px;
+        font-weight: 800;
+        color: rgba(0,0,0,1);
+    }
+    .hasnot-name-w{
+        margin: 0;
+        font-size: 20px;
+        font-weight: 800;
+        color: rgba(0,0,0,.4);
+    }
+    .hasnot-content-w{
+        margin: 0;
+        font-size: 16px;
+        color: rgba(0,0,0,.4);
+    }
+    .has-content-w{
+        margin: 0;
+        font-size: 16px;
+        color: rgba(0,0,0,1);
+    }
+}
+
+.show-sub-content-w{
+    .format-text-w{
+        p{
+            line-height: 1.5;
+            font-size: small;
+            word-wrap: break-word;
+            margin: 0 !important;
+        }
+    } 
+}
