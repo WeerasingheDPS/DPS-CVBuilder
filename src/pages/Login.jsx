@@ -16,6 +16,7 @@ import {
   Alert,
   message,
 } from "antd";
+import { LogIn } from "../api/apiProviderService";
 const {Link, Title, Text } = Typography;
 
 
@@ -46,13 +47,24 @@ export default function Login() {
           email: email,
           password: password
         };
+        const data = {
+          url:"auth/login",
+          data:userCredentials
+        }
           try{
-           
-            message.error("Invalid Usernae or password!");
-            setEmail('');
-            setPassword('');
-            setLoading(false);
-          
+            const response = await LogIn(data);
+            if(response.data.success){
+              localStorage.setItem("ACCESS_TOKEN", response.data.result.accessToken);
+              localStorage.setItem("REFRESH_TOKEN", response.data.result.refreshToken);
+              localStorage.setItem("IS_LOGGED_IN", true);
+              localStorage.setItem("USER", JSON.stringify(response.data.result.user));
+              localStorage.setItem("USER_ID", response.data.result.user.id);
+              window.location.href = "resume";
+             // navigate("/createresume");
+              setEmail('');
+              setPassword('');
+              setLoading(false);
+            }
           }catch(e){
             console.log(e.message);
             message.error("Invalid Usernae or password!");

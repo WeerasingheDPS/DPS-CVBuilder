@@ -24,7 +24,7 @@ export default function MainLayout() {
             }}
           >
             <Col span={24}>
-              <Navbar status={true}/>
+              <Navbar/>
             </Col>
           </Row>
           <Layout style={{ display: "flex", flexDirection: "row" }}>

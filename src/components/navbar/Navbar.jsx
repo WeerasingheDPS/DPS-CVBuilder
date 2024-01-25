@@ -3,8 +3,9 @@ import { RightCircleFilled, LogoutOutlined } from "@ant-design/icons";
 import logo from "../../assests/images/CVBuilderLogo.png";
 import { useNavigate } from "react-router-dom";
 
-export default function Navbar({ status }) {
+export default function Navbar() {
    const navigate = useNavigate();
+   const isLogin = localStorage.getItem("IS_LOGGED_IN") == null ? false : localStorage.getItem("IS_LOGGED_IN");
   return (
     <>
       <Row
@@ -28,7 +29,7 @@ export default function Navbar({ status }) {
                 </Col>
                 <Col>
                   <Space>
-                    {status && (
+                    {!isLogin && (
                         <>
                          <Button
                          onClick={()=>navigate("/signup")}
@@ -67,7 +68,7 @@ export default function Navbar({ status }) {
                         </>
                      )}
 
-                    {!status && (
+                    {isLogin && (
                       <Button
                         style={{
                           backgroundColor: "rgb(32,14,50)",

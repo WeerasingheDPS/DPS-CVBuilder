@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const getToken = () => {
-  return "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkcHN3ZWVyYXNpbmdoZUBnbWFpbC5jb20iLCJpYXQiOjE3MDU1MDUwNzMsImV4cCI6MTcwNjU0NDMwMn0.tDhMW60c7z-etqOe5WPsDcgfwwD3aTcrdbI0qpPEliE";
+  return localStorage.getItem("ACCESS_TOKEN");
 };
 
 export const userRegister = (authRequest) => {
@@ -44,6 +44,10 @@ export const postData = (authRequest) => {
       Authorization: "Bearer " + getToken(),
     },
   })
+};
+
+export const LogIn = (authRequest) => {
+  return axios.post(`${authRequest.url}`, authRequest.data)
 };
 
 export const updateData = (authRequest) => {

@@ -52,7 +52,7 @@ export default function AddContent() {
   const activeLink = useSelector((state) => state.models.addLink);
   const dispatch = useDispatch();
   const [isProfile, setIsProfile] = useState(false);
-
+  const userId = localStorage.getItem("USER_ID");
 
  
 
@@ -217,7 +217,6 @@ export default function AddContent() {
     let updatedList = updateValue(activeContent.index, activeContent.key, "description", html);
     dispatch(setMainContents(updatedList));
   };
-  const userId = 2;
   const handleSubmit = async() =>{
     dispatch(openLoading());
     let data = {

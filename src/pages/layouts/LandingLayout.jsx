@@ -26,7 +26,7 @@ export default function LandingLayout() {
             }}
           >
             <Col span={24}>
-              <Navbar status={true}/>
+              <Navbar/>
             </Col>
           </Row>
           <Row>

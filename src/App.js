@@ -15,7 +15,7 @@ import SignUp from "./pages/SignUp";
 
 function App() {
 
-  const isLogin = true;
+  const isLogin = localStorage.getItem("IS_LOGGED_IN") == null ? false : localStorage.getItem("IS_LOGGED_IN");
   return (
    <>
    <BrowserRouter>
@@ -42,8 +42,7 @@ function App() {
         }
         
       </Routes>
-    </BrowserRouter>
-  
+    </BrowserRouter>  
    </>
   );
 }

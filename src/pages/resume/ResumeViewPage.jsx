@@ -112,7 +112,7 @@ const ResumeViewPage = () => {
               </Col>
             )}
           </Row>
-          {mainContents.map((items) => {
+          {mainContents != null && mainContents.map((items) => {
               return(
                 <>
                 <ShowContent item = {items}/>

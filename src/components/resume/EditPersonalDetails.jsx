@@ -39,7 +39,7 @@ import { setAddress, setDiscode, setDiscodeLabel, setEmail, setGitHub, setGitHub
 const { Title, Text, Link } = Typography;
 export default function EditPersonalDetails() {
   const dispatch = useDispatch();
-  const userId = 2;
+  const userId = localStorage.getItem("USER_ID");
   const addLink = useSelector((state) => state.models.addLink);
   const personalData = useSelector((state)=>state.resume.personalData);
   const linksList = [

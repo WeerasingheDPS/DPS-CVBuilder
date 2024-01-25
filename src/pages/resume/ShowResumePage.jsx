@@ -11,14 +11,12 @@ const { Title, Text, Link } = Typography;
 
 export default function ShowResumePage() {
 
-  const id = 1;
   const loading = useSelector((state)=>state.models.loading);
-  const hasResume = true;
   const dispatch = useDispatch();
       useEffect(() => {
       GetResumeData(dispatch);
   }, []);
-
+  let hasResume = localStorage.getItem("HAS_RESUME");
   return (
     <>
     <Spin spinning={loading}>
