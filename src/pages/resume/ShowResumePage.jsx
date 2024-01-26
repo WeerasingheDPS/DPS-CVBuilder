@@ -13,7 +13,7 @@ export default function ShowResumePage() {
 
   const loading = useSelector((state)=>state.models.loading);
   const dispatch = useDispatch();
-      useEffect(() => {
+  useEffect(() => {
       GetResumeData(dispatch);
   }, []);
   let hasResume = localStorage.getItem("HAS_RESUME");

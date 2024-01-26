@@ -12,7 +12,7 @@ import {
   message,
   Form
 } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { storage } from "../../api/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import {
@@ -42,7 +42,11 @@ export default function EditPersonalDetails() {
   const userId = localStorage.getItem("USER_ID");
   const addLink = useSelector((state) => state.models.addLink);
   const personalData = useSelector((state)=>state.resume.personalData);
-  const linksList = [
+  const [imageUpload, setImageUpload] = useState(null);
+  const [activeDetails, setActiveDetails] = useState([]);
+  const [label, setLabel]= useState(null);
+  const [active, setActive] = useState(0);
+  const linksList = [ 
     {
       key: 1,
       label: "LinkedIn",
@@ -75,10 +79,51 @@ export default function EditPersonalDetails() {
     },
   ];
 
-  const [imageUpload, setImageUpload] = useState(null);
-  const [activeDetails, setActiveDetails] = useState([]);
-  const [label, setLabel]= useState(null);
-  const [active, setActive] = useState(0);
+  const checkList = [
+    {
+      key:1,
+      label: "linkedInLabel"
+    },
+    {
+      key:2,
+      label: "twitterLabel"
+    },
+    {
+      key:3,
+      label: "githubLabel"
+    },
+    {
+      key:4,
+      label: "websiteLabel"
+    },
+    {
+      key:5,
+      label: "discordLabel"
+    },
+  ]
+
+  useEffect(() => {
+    const existActiveList = [];
+  
+    checkList.forEach((item, index) => {
+      // Use dynamic property access to check if personalData[item.label] is not null
+      if (personalData[`${item.label}`] !== null) {
+        const activeData = {
+          key: item.key,
+          label: null, // Replace this with the actual label logic
+          icon: null, // Replace this with the actual icon logic
+          placeholder: null, // Replace this with the actual placeholder logic
+        };
+  
+        existActiveList.push(activeData);
+      }
+    });
+  
+    setActiveDetails(existActiveList);
+  }, []);
+  
+
+  
 
   const handleFileChange = (info) => {
     setImageUpload(info.file.originFileObj);
@@ -154,7 +199,7 @@ export default function EditPersonalDetails() {
      name: personalData.name,
      profilePicture:temp,
      phone: personalData.phone,
-     jobTitle: personalData.title,
+     jobTitle: personalData.jobTitle,
      email: personalData.email,
      address: personalData.address,
      linkedInLabel:personalData.linkedInLabel,
@@ -193,31 +238,65 @@ export default function EditPersonalDetails() {
   }
 
   const InputLink = ({id}) => {
-    const [value, setValue] = useState("");
+    
+
+    const getLinkValue =()=>{
+      if(id===1){
+        return personalData.linkedIn
+    }else if(id===2){
+        return personalData.twitter
+    }else if(id===3){
+      return personalData.github
+    }else if(id===4){
+      return personalData.website
+    }else if(id===5){
+      return personalData.discode
+    }
+    }
+
+    const [linkValue, setLinkValue] = useState(getLinkValue(id));
+
+ 
+    const setLinks =(e)=>{
+      if(id===1){
+        dispatch(setLinkedIn(e.target.value));
+      }else if(id===2){
+       dispatch( setTwitter(e.target.value));
+      }else if(id===3){
+        dispatch(setGitHub(e.target.value));
+      }else if(id===4){
+        dispatch(setWebsite(e.target.value));
+      }else if(id===5){
+        dispatch(setDiscode(e.target.value));
+      }
+  }
+
     const handleAdd =(id)=>{
-        if(id===1){
-            dispatch(setLinkedIn(value));
-            setValue("");
-            dispatch(closeAddLink());
-        }else if(id===2){
-            dispatch(setTwitter(value));
-            setValue("");
-            dispatch(closeAddLink());
-        }else if(id===3){
-            dispatch(setGitHub(value));
-            setValue("");
-            dispatch(closeAddLink());
-        }else if(id===4){
-            dispatch(setWebsite(value));
-            setValue("");
-            dispatch(closeAddLink());
-        }else if(id===5){
-            dispatch(setDiscode(value));
-            setValue("");
-            dispatch(closeAddLink());
-        }else{
-          dispatch(closeAddLink());
-        }
+      dispatch(closeAddLink());
+
+        // if(id===1){
+        //     dispatch(setLinkedIn(linkValue));
+        //     setLinkValue("");
+        //     dispatch(closeAddLink());
+        // }else if(id===2){
+        //     dispatch(setTwitter(linkValue));
+        //     setLinkValue("");
+        //     dispatch(closeAddLink());
+        // }else if(id===3){
+        //     dispatch(setGitHub(linkValue));
+        //     setLinkValue("");
+        //     dispatch(closeAddLink());
+        // }else if(id===4){
+        //     dispatch(setWebsite(linkValue));
+        //     setLinkValue("");
+        //     dispatch(closeAddLink());
+        // }else if(id===5){
+        //     dispatch(setDiscode(linkValue));
+        //     setLinkValue("");
+        //     dispatch(closeAddLink());
+        // }else{
+        //   dispatch(closeAddLink());
+        // }
       }
      
     return (
@@ -231,8 +310,8 @@ export default function EditPersonalDetails() {
                 </Col>
                 <Col span={24}>
                     <Input 
-                        onChange={(e)=>{setValue(e.target.value);console.log(value)}}
-                        value={value}
+                        onChange={setLinks}
+                        value={getLinkValue()}
                         className="input-w" 
                         placeholder="Enter Link"/>
                 </Col>
@@ -386,7 +465,7 @@ export default function EditPersonalDetails() {
                   </Text>
                 </Title>
                 <Input
-                  value={personalData.title}
+                  value={personalData.jobTitle}
                   onChange={(e)=>dispatch(setTitle(e.target.value))}
                   className="input-w"
                   size="large"
@@ -474,7 +553,7 @@ export default function EditPersonalDetails() {
                             <Row gutter={10}>
                               <Col span={18}>
                                 <Input
-                                  value={getValue(items.id)}
+                                  value={getValue(items.key)}
                                   onChange={(e)=>{handleChange(items.key,e.target.value)}}
                                   className="input-w"
                                   placeholder={items.label}
@@ -523,11 +602,13 @@ export default function EditPersonalDetails() {
 
                   {linksList.map((item) => {
                     return (
-                      <Col>
+                      <Col key={item.key}>
                         <span
                           onClick={() =>
                             {
-                                setActiveDetails([...activeDetails, item])                       
+                              if(!activeDetails.some((activeItem) => activeItem.key === item.key)){
+                                setActiveDetails([...activeDetails, item])
+                              }                    
                             }
                           }
                           style={{ backgroundColor: "rgba(243,244,246,255)" }}

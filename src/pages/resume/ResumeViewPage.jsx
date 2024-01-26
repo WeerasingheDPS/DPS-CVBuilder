@@ -44,10 +44,10 @@ const ResumeViewPage = () => {
                     </Title>
                   </Col>
                 )}
-                {personalData.title && (
+                {personalData.jobTitle && (
                   <Col span={24}>
                     <Title level={4} style={{ margin: "0" }}>
-                      {personalData.title}
+                      {personalData.jobTitle}
                     </Title>
                   </Col>
                 )}

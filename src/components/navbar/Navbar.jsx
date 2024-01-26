@@ -76,6 +76,7 @@ export default function Navbar() {
                         }}
                         shape="round"
                         size="large"
+                        onClick={()=>{localStorage.clear(); window.location.href="/"}}
                       >
                         <span style={{ fontWeight: "700" }}>
                           Logout <LogoutOutlined />

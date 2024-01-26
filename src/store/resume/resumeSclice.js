@@ -4,7 +4,7 @@ const initialState = {
 
     personalData:{
       name:null,
-      title:null,
+      jobTitle:null,
       phone:null,
       email:null,
       address:null,
@@ -38,7 +38,7 @@ const resumeSlice = createSlice({
       state.personalData.name = action.payload;
     },
     setTitle: (state, action) => {
-      state.personalData.title = action.payload;
+      state.personalData.jobTitle = action.payload;
     },
     setPhone: (state, action) => {
       state.personalData.phone = action.payload;
