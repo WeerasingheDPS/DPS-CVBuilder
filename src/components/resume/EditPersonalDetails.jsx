@@ -630,11 +630,11 @@ export default function EditPersonalDetails() {
                   Cancel
                 </Button>
                 <Button 
+                  type="primary"
                   htmlType="submit"
                   icon={<CheckOutlined />}
                   size="large"
                   style={{
-                    backgroundColor: 'rgba(25,103,210,255)',
                     color: 'white',
                     height: '50px', 
                     width: '100px'}}> 

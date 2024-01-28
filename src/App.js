@@ -11,11 +11,13 @@ import ShowResumePage from "./pages/resume/ShowResumePage";
 import Login from "./pages/Login";
 import LandingLayout from "./pages/layouts/LandingLayout";
 import SignUp from "./pages/SignUp";
+import ResumeViewPage from "./pages/resume/ResumeViewPage";
 
 
 function App() {
 
-  const isLogin = localStorage.getItem("IS_LOGGED_IN") == null ? false : localStorage.getItem("IS_LOGGED_IN");
+  const isLogin = localStorage.getItem("IS_LOGGED_IN") === null ? false : localStorage.getItem("IS_LOGGED_IN");
+
   return (
    <>
    <BrowserRouter>
@@ -26,6 +28,7 @@ function App() {
           <Route path="/resume" element={<ShowResumePage/>}/>
           <Route path="/createresume" element={<ViewResume/>}/>
           <Route path="/viewresume" element={<ViewResume/>}/>
+          <Route path="/viewresumepage" element={<ResumeViewPage/>}/>
         </Route>
         }
 

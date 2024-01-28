@@ -59,8 +59,11 @@ export default function Login() {
               localStorage.setItem("IS_LOGGED_IN", true);
               localStorage.setItem("USER", JSON.stringify(response.data.result.user));
               localStorage.setItem("USER_ID", response.data.result.user.id);
+              //window.history.replaceState(null,"resume");
               window.location.href = "resume";
-             // navigate("/createresume");
+             // navigate("/resume");
+             
+              
               setEmail('');
               setPassword('');
               setLoading(false);
@@ -83,13 +86,12 @@ export default function Login() {
   
   return (
     <>
-      <Row style={{height: '85vh',backgroundColor: '#F2FAFA'}} align='middle'>
+      <Row className="login-main" align='middle'>
         <Col span={24}>
           <Row align="middle" justify='center'>
-            <Col span={10} style={{background: "transparent"}} >
-              <Row justify='center' align='middle' style={{background: "transparent"}}>
-                <Col span={18} style={{padding: '5% ',background: "transparent" ,borderRadius: '15px' ,boxShadow:
-              "0px 24px 83px 0px rgba(0, 0, 0, 0.10), 0px 5px 18px 0px rgba(0, 0, 0, 0.06), 0px 2px 6px 0px rgba(0, 0, 0, 0.04)",}}>
+            <Col span={10}   >
+              <Row justify='center' align='middle' >
+                <Col span={18} className="login-form" >
                   <Row
                     style={{ marginBottom: "4px" }}
                   >
@@ -107,6 +109,8 @@ export default function Login() {
                           padding: "6px 10px 6px",
                           marginBottom: "0px",
                           fontSize: "medium",
+                          background: "transparent",
+                          border: "2px solod rgb(255,255,255)"
                         }}
                         required
                         allowClear

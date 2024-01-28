@@ -31,42 +31,27 @@ export default function Sidebar (){
     const navigate = useNavigate();
 
     const sidebarItems = [
-        {
-          id: 1,
-          label: "sfgegth",
-          key: "/dashboard",
-          icon: <DashboardFilled />,
-        },
-        {
-          id: 2,
-          label: "",
-          key: "/profile",
-          icon: <UserOutlined />,
-        },
+       
         {
             id: 3,
-            label: "",
+            label: "Resume",
             key: "/resume",
             icon: <AuditOutlined />,
           },
+          
           {
-            id: 4,
-            label: "",
-            key: "/appliedjobs",
-            icon: <FileSearchOutlined />,
+            id: 10,
+            label: "Settings",
+            key: "/settings",
+            icon: <SettingFilled />,
+            children: [
+              {
+                label: "ChangePassword",
+                key: "/changepassword",
+                icon: <LockFilled />,
+              },
+            ],
           },
-          {
-            id: 5,
-            label: "",
-            key: "/savedjobs",
-            icon: <FileAddOutlined />,
-          },
-          {
-            id: 6,
-            label: "",
-            key: "scheduledinterviews",
-            icon: <FiSlack />,
-          }
         ]
    
     const onClick = ({ key }) => {

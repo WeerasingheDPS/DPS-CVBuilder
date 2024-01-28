@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { setActiveContent, setMainContents } from "../../store/resume/resumeSclice";
 import EditingResume from "./EditingResume";
 import ResumeViewPage from "../../pages/resume/ResumeViewPage";
+import GetResumeData from "../../api/getdata/getResumeData";
 
 
 const { Title, Text } = Typography;
@@ -28,6 +29,16 @@ export default function ViewResume() {
   const loading = useSelector((state)=>state.models.loading);
   const viewEdit = useSelector((state) => state.models.viewEditDetails);
   const addContent = useSelector((state) => state.models.addContent);
+
+  const personalData = useSelector((state) => state.resume.personalData);
+  let hasResume = localStorage.getItem("HAS_RESUME");
+
+
+  useEffect(() => {
+    if(!mainContents && hasResume){
+      GetResumeData(dispatch);
+    }
+  }, []);
 
   const handleContent = (data) => {
     dispatch(setActiveContent(data))
@@ -89,7 +100,7 @@ export default function ViewResume() {
               <Row justify='end' gutter={20}>
                 <Col>
                 <Button 
-                onClick={()=>navigate("/viewresume")}
+                onClick={()=>navigate("/viewresumepage")}
                 type="primary"
                 size="large"
                 style={{borderRadius: '0'}}>

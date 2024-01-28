@@ -101,23 +101,17 @@ export default function SignUp() {
     <>
       <Spin spinning={loading}>
       <Row
-        style={{ height: "85vh", backgroundColor: "#F2FAFA" }}
+        className="login-main"
         align="middle"
         justify='center'
       >
         <Col span={24}>
           <Row justify='center'>
-            <Col span={12}>
+            <Col span={10}>
               <Row justify="center" align="middle">
                 <Col
                   span={18}
-                  style={{
-                    padding: "5% ",
-                    backgroundColor: "white",
-                    borderRadius: "15px",
-                    boxShadow:
-                      "0px 24px 83px 0px rgba(0, 0, 0, 0.10), 0px 5px 18px 0px rgba(0, 0, 0, 0.06), 0px 2px 6px 0px rgba(0, 0, 0, 0.04)",
-                  }}
+                 className="login-form"
                 >
                   <Row >
                     <Title style={{ marginTop: "15px" }} level={2}>

@@ -20,6 +20,7 @@ import { FiMapPin, FiEdit } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ShowContent from "../../components/resume/ShowContent";
+import GetResumeData from "../../api/getdata/getResumeData";
 
 const { Content } = Layout;
 const { Title, Text, Link } = Typography;
@@ -30,6 +31,14 @@ const ResumeViewPage = () => {
   const pdfRef = useRef();
   const personalData = useSelector((state) => state.resume.personalData);
   const mainContents = useSelector((state) => state.resume.mainContents);
+  let hasResume = localStorage.getItem("HAS_RESUME");
+
+
+  useEffect(() => {
+    if(!mainContents && hasResume){
+      GetResumeData(dispatch);
+    }
+  }, []);
   return (
     <>
       <Row justify="center" align="middle" style={{ padding: "5% 0" }}>

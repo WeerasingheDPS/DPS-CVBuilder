@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/Sidebar'
 import LandingPage from '../LandingPage';
+import Footer from '../Footer';
 const { Content } = Layout;
 
 export default function LandingLayout() {
@@ -30,7 +31,10 @@ export default function LandingLayout() {
             </Col>
           </Row>
           <Row>
-            {location.pathname ===  "/" ? <Col span={24}> <LandingPage/></Col> : <Col span={24}><Outlet/></Col>}
+              {location.pathname ===  "/" ? <Col span={24}> <LandingPage/></Col> : <Col span={24}><Outlet/></Col>}
+              <Col span={24}>
+                {location.pathname === "/" ? <Col span={24}> <Footer/></Col> : null}
+              </Col>
           </Row>
     </>
   )

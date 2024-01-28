@@ -4,9 +4,14 @@ import { Outlet } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/Sidebar'
+import ShowResumePage from '../resume/ShowResumePage';
+import Footer from '../Footer';
 const { Content } = Layout;
 
 export default function MainLayout() {
+
+  const location = useLocation();
+
   return (
     <>
        <Layout>
@@ -39,9 +44,11 @@ export default function MainLayout() {
                   boxShadow: "0px 0px 5px  rgba(0,0,0,.2)",
                   zIndex: 0
                 }}>
-                <Outlet/>
+                  {location.pathname === "/" ? <Col span={24}> <ShowResumePage/></Col> : <Col span={24}><Outlet/></Col>}
+                  <Col span={24}>
+                    <Footer/>
+                  </Col>
               </Content>
-              <h1>This is footer</h1>
             </Layout>
           </Layout>
         </Layout>
