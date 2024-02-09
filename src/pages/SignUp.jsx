@@ -62,7 +62,6 @@ export default function SignUp() {
       let registerData = {
         email: email,
         password: password,
-        userType: "CV_CREATOR",
       };
 
       const requestData = {
@@ -136,6 +135,7 @@ export default function SignUp() {
                         onChange={handleEmailChange}
                         style={{
                           padding: "6px 10px 6px",
+                          border: "2px solid white",
                           fontSize: "medium",
                         }}
                         allowClear
@@ -156,6 +156,7 @@ export default function SignUp() {
                         style={{
                           padding: "6x 10px 6px",
                           fontSize: "medium",
+                          border: "2px solid white"
                         }}
                         allowClear
                         
@@ -184,6 +185,7 @@ export default function SignUp() {
                         onChange={handleConfirmPasswordChange}
                         style={{
                           padding: "6px 10px 6px",
+                          border: "2px solid white",
                           fontSize: "medium",
                         }}
                         allowClear

@@ -18,8 +18,18 @@ export default function ShowContent({item}) {
             <Col span={24}>
               <Title level={3}>{item.contentTitle}</Title>
               <hr style={{ border: "2px solid rgba(0,0,0,.6)" }} />
-              {item.subContents &&
-                <Text>{item.subContents[0].description}</Text>}
+
+              {item.subContents[0].description &&
+        
+                  <div
+                    className=" format-text-w"
+                    dangerouslySetInnerHTML={{
+                      __html: item.subContents[0].description,
+                    }}
+                  />
+              }
+              {/* {item.subContents &&
+                <Text>{item.subContents[0].description}</Text>} */}
             </Col>
           </Row>
         </>

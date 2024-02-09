@@ -122,7 +122,9 @@ export default function CustomContentModel() {
         }
       ]
     }
-        dispatch(addMainContent(mainContent));
+
+    const updateMainContents = [...mainContents, mainContent];
+        dispatch(setMainContents(updateMainContents));
         dispatch(closeCustomContent());
         dispatch(openAddContent());
         let activeCon = {

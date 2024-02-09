@@ -39,11 +39,12 @@ export default function PersonDetailsEditView() {
                   </Text>
                   <Button 
                     size="large"
+                    
                     icon={<FiEdit />}
                     onClick={() => dispatch(openViewEditDetails())}
                     style={{
                         borderRadius: '0',
-                        border: '1px solid rgba(25,103,210,1)'}} />
+                        border: '1px solid rgba(255, 116, 0, 1)'}} />
                 </Row>
               </Col>
               <Col span={24}>

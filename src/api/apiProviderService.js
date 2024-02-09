@@ -10,7 +10,7 @@ export const userLogin = (authRequest) => {
 };
 
 export const userChangePassword = (change) => {
-  return axios.put("api/v1/systemUser/changePassword", change);
+  return axios.post(`auth/change_password/${localStorage.getItem("USER_ID")}`, change);
 };
 
 export const updateProfileData = (authRequest) => {

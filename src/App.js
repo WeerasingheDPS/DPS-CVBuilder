@@ -12,6 +12,8 @@ import Login from "./pages/Login";
 import LandingLayout from "./pages/layouts/LandingLayout";
 import SignUp from "./pages/SignUp";
 import ResumeViewPage from "./pages/resume/ResumeViewPage";
+import ChangePassword from "./pages/ChangePassword";
+import ResumeFullPage from "./pages/resume/ResumeFullPage";
 
 
 function App() {
@@ -28,7 +30,9 @@ function App() {
           <Route path="/resume" element={<ShowResumePage/>}/>
           <Route path="/createresume" element={<ViewResume/>}/>
           <Route path="/viewresume" element={<ViewResume/>}/>
-          <Route path="/viewresumepage" element={<ResumeViewPage/>}/>
+          <Route path="/viewresumepage" element={<ResumeFullPage/>}/>
+          <Route path="/changepassword" element={<ChangePassword/>}/>
+
         </Route>
         }
 

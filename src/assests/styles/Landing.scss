@@ -1,0 +1,32 @@
+.landing-home-main{
+    min-height: 70vh;
+    background: url('../images/Landing-home.png');
+    background-size: cover;
+
+     .huge-title-white{
+        font-size: 55px;
+        font-weight: 700;
+        line-height: 60px;
+    }
+
+    .huge-title-orange{
+        font-size: 55px;
+        font-weight: 700;
+        line-height: 100px;
+        color: white;
+    }
+
+    .normal-title{
+        font-size: 25px;
+        font-weight: 500;
+        line-height: 40px;
+    }
+
+    .normal-title-orange{
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 50px;
+        color: rgba(255, 116, 0, 1);
+    }
+
+}

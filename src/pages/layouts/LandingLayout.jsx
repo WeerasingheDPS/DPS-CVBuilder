@@ -15,25 +15,16 @@ export default function LandingLayout() {
     <>                                                                                  
           <Row
             justify="center"
-            style={{
-              paddingTop:"0vh",
-              height: "15vh",
-              position: "sticky",
-              top: "0",
-              left: "0",
-              width: "100%",
-              backgroundColor: "white",
-              zIndex: "2",
-            }}
+           className='landing-layout-w'
           >
-            <Col span={24}>
+            <Col span={24} className='landing-navbar-w'>
               <Navbar/>
             </Col>
           </Row>
           <Row>
               {location.pathname ===  "/" ? <Col span={24}> <LandingPage/></Col> : <Col span={24}><Outlet/></Col>}
               <Col span={24}>
-                {location.pathname === "/" ? <Col span={24}> <Footer/></Col> : null}
+                {location.pathname === "/" ? <Col id='4footer' span={24}> <Footer/></Col> : null}
               </Col>
           </Row>
     </>

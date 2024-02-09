@@ -1,5 +1,7 @@
 import { Button, Card, Col, Row, Typography, Collapse,Spin } from "antd";
-import { useState, useEffect } from "react";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import { useState, useEffect, useRef } from "react";
 import EditPersonalDetails from "./EditPersonalDetails";
 import PersonDetailsEditView from "./PersonDetailsEditView";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +17,7 @@ import { setActiveContent, setMainContents } from "../../store/resume/resumeScli
 import EditingResume from "./EditingResume";
 import ResumeViewPage from "../../pages/resume/ResumeViewPage";
 import GetResumeData from "../../api/getdata/getResumeData";
+import { postData } from "../../api/apiProviderService";
 
 
 const { Title, Text } = Typography;
@@ -22,6 +25,7 @@ const { Title, Text } = Typography;
 export default function ViewResume() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const pdfRef = useRef();
 
   const mainContents = useSelector((state)=> state.resume.mainContents);
   const activeContent = useSelector((state)=>state.resume.activeContent);
@@ -35,7 +39,7 @@ export default function ViewResume() {
 
 
   useEffect(() => {
-    if(!mainContents && hasResume){
+    if(mainContents.length == 0 || personalData === null && hasResume){
       GetResumeData(dispatch);
     }
   }, []);
@@ -76,6 +80,76 @@ export default function ViewResume() {
       handleContent(data);
   };
 
+  const downloadPdf = async () => {
+    const inputRef = document.getElementById("resume-id");
+  
+
+      html2canvas(inputRef).then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF("p", "pt", "a4");
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        const imgWidth = canvas.width;
+        const imgHeight = canvas.height;
+        const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+        
+        // Calculate the center position for the image on the PDF page
+        const imgX = (pdfWidth - imgWidth * ratio) / 2;
+        //const imgY = 30;
+        const imgY = (pdfHeight - imgHeight * ratio) / 2;
+  
+        pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+      // pdf.addImage(imgData, 'JPEG', 0, 0, imgX, imgY);
+
+        pdf.save('Resume.pdf');
+      });
+   
+  };
+  
+  const downloadPdfs = async() =>{
+     const inputRef = document.getElementById("resume-id");
+
+  //  try{
+  //   html2canvas(inputRef).then((canvas) =>{
+  //     const imgData = canvas.toDataURL('image/png');
+  //      const pdf = new jsPDF();
+  //     const pdfWidth = pdf.internal.pageSize.getWidth;
+  //     const pdfHeight = pdf.internal.pageSize.getHeight;
+  //     const imgWidth = canvas.width;
+  //     const imgHeight = canvas.height;
+  //     const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+  //     const imgx = (pdfWidth - imgWidth * ratio) / 2;
+  //     //const imgY = (pdfHeight - imgHeight * ratio) / 2;
+
+  //     const imgy = 30;
+  //     pdf.addImage(imgData, 'PNG', imgx, imgy, imgWidth * ratio, imgHeight * ratio);
+  //     pdf.save('Resume.pdf');
+
+  //   })
+  //  }catch(e){
+  //   console.log(e);
+  //  }
+
+    const sdata = {
+      resume: document.getElementById("resume-id").innerHTML
+    }
+    const sendData = {
+      url: `resume/download/1`,
+      data: sdata
+    }
+
+    try{
+      const response = await postData(sendData);
+      console.log(response);
+
+    }
+    catch(e){
+      console.log(e);
+    }
+    
+
+  }
+
   return (
     <>
       <Spin spinning={loading}>
@@ -86,7 +160,6 @@ export default function ViewResume() {
           height: "80vh",
         }}
       >
-
         <Col
           span={12}
           style={{
@@ -95,8 +168,8 @@ export default function ViewResume() {
             height: "100%",
           }}
         >
-          <Row gutter={[20, 20]}>
-            <Col span={22}>
+          <Row gutter={[0, 20]}>
+            <Col lg={24} xl={22}>
               <Row justify='end' gutter={20}>
                 <Col>
                 <Button 
@@ -105,6 +178,15 @@ export default function ViewResume() {
                 size="large"
                 style={{borderRadius: '0'}}>
                 View Resume
+              </Button>
+                </Col>
+                <Col>
+                <Button 
+                onClick={downloadPdf}
+                type="primary"
+                size="large"
+                style={{borderRadius: '0'}}>
+                Download Resume
               </Button>
                 </Col>
               </Row>
@@ -266,7 +348,7 @@ export default function ViewResume() {
             height: "80vh",
             flex: 1,
           }}>
-          <EditingResume/>
+          <EditingResume ref={pdfRef}/>
         </Col>
       </Row>
       </Spin>

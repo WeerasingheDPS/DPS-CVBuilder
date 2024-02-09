@@ -12,8 +12,12 @@ export default async function GetResumeData (dispatch)  {
       if (response.data.success && response.data.result != null) {
         console.log(response.data)
         dispatch(closeLoading());
-        dispatch(setMainContents(response.data.result.mainContents));
-        dispatch(setPersonalData(response.data.result.personalData));
+        if(response.data.result.mainContents !== null){
+          dispatch(setMainContents(response.data.result.mainContents));
+        }
+        if(response.data.result.personalData !== null){
+          dispatch(setPersonalData(response.data.result.personalData));
+        }
         dispatch(setHasCv((response.data.result.mainContents != null || response.data.result.personalData != null) ? true : false));
         if(response.data.result.mainContents != null || response.data.result.personalData != null){
           localStorage.setItem("HAS_RESUME", true);

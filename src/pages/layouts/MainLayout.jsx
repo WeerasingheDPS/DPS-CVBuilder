@@ -11,22 +11,15 @@ const { Content } = Layout;
 export default function MainLayout() {
 
   const location = useLocation();
+  const isLogin = localStorage.getItem("IS_LOGGED_IN") === null ? false : localStorage.getItem("IS_LOGGED_IN");
+
 
   return (
     <>
        <Layout>
           <Row
             justify="center"
-            style={{
-              paddingTop:"0vh",
-              height: "15vh",
-              position: "sticky",
-              top: "0",
-              left: "0",
-              width: "100%",
-              backgroundColor: "white",
-              zIndex: "2",
-            }}
+            className='main-layout-navbar-w'
           >
             <Col span={24}>
               <Navbar/>
@@ -36,17 +29,11 @@ export default function MainLayout() {
             <Sidebar />
             <Layout style={{ backgroundColor: "white" }}>
               <Content
-                style={{
-                  padding: "70px",
-                  margin:  30,
-                  minHeight: "85vh",
-                  backgroundColor: "white",
-                  boxShadow: "0px 0px 5px  rgba(0,0,0,.2)",
-                  zIndex: 0
-                }}>
-                  {location.pathname === "/" ? <Col span={24}> <ShowResumePage/></Col> : <Col span={24}><Outlet/></Col>}
+                className='main-layout-content-w'
+               >
+                  {isLogin && location.pathname === "/"  ? <Col span={24}> <ShowResumePage/></Col> : <Col span={24}><Outlet/></Col>}
                   <Col span={24}>
-                    <Footer/>
+                    {/* <Footer/> */}
                   </Col>
               </Content>
             </Layout>

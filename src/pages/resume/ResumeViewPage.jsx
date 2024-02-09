@@ -35,17 +35,17 @@ const ResumeViewPage = () => {
 
 
   useEffect(() => {
-    if(!mainContents && hasResume){
+    if(mainContents.length === 0 || personalData === null && hasResume){
       GetResumeData(dispatch);
     }
   }, []);
   return (
     <>
-      <Row justify="center" align="middle" style={{ padding: "5% 0" }}>
+      <Row id="resume-id" justify="center" align="middle">
         <Col span={24} id="resumeData">
           <Row justify="space-between">
             <Col span={18}>
-              <Row gutter={[20, 10]}>
+              <Row  gutter={[20, 10]}>
                 {personalData.name && (
                   <Col span={24}>
                     <Title level={2} style={{ margin: "0" }}>

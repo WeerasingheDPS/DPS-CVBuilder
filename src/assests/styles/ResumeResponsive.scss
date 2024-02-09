@@ -1,0 +1,18 @@
+@media only screen and (max-width: 600px) {
+    .edit-personal-details-w{
+
+        .input-w{
+            background-color: red ;
+            border: none;
+            outline: none !important;
+            border-radius: 0;
+            &:hover{
+                border: none !important;
+                outline: none !important;
+            }
+            &:focus{
+                border: none;
+            }
+        }
+    }
+  }

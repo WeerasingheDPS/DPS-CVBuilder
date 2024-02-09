@@ -24,11 +24,15 @@ import {
   import { FaEnvelopeOpenText } from "react-icons/fa";
   import { AiOutlineDollar,AiOutlineSubnode } from "react-icons/ai";
   import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
+import { useDispatch, useSelector } from 'react-redux';
+import { setCollapsed } from '../store/models/modelsSlice';
 
 export default function Sidebar (){
 
-    const [isCollapsed, setIsCollapsed] = useState(false);
+   // const [isCollapsed, setIsCollapsed] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const isCollapsed = useSelector((state)=>state.models.collapsed);
 
     const sidebarItems = [
        
@@ -58,8 +62,8 @@ export default function Sidebar (){
             navigate(key);
     
     };
-    const toggleCollapsed = (e) => {
-       setIsCollapsed(!isCollapsed);
+    const toggleCollapsed = () => {
+        dispatch(setCollapsed());
     };
 
     return (
@@ -76,7 +80,7 @@ export default function Sidebar (){
                 position: 'sticky',
                 top: '15vh',
                 backgroundColor: 'white',
-                minWidth: isCollapsed ? '60px' : "100px",
+                minWidth: isCollapsed ? '60px' : "150px",
                 left: '0',
                 overflow: 'auto',
                 scrollbarWidth: '0',
@@ -91,7 +95,6 @@ export default function Sidebar (){
                         <Col span={24} >
                             <Row >
                                 <Button
-
                                     onClick={toggleCollapsed}
                                     style={{
                                         marginBottom: 16,

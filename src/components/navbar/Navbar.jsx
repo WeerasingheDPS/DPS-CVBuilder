@@ -8,23 +8,13 @@ export default function Navbar() {
    const isLogin = localStorage.getItem("IS_LOGGED_IN") == null ? false : localStorage.getItem("IS_LOGGED_IN");
   return (
     <>
-      <Row
-        style={{
-          backgroundColor: "#F0EEEB",
-          minHeight: "15vh",
-          flexDirection: "column",
-          position: "sticky",
-          top: "0vh",
-          left: "0",
-          overflow: "auto",
-          scrollbarWidth: "0",
-        }}
+      <Row className="nav-bar-main-w"
       >
         <Col span={24}>
-          <Row justify="center" style={{ padding: "1%" }}>
-            <Col span={18}>
+          <Row justify="center">
+            <Col span={20}>
               <Row justify="space-between" align="middle">
-                <Col span={5}>
+                <Col  md={8} sm={9} xs={8}> 
                   <Image src={logo} preview={false} />
                 </Col>
                 <Col>
@@ -32,14 +22,10 @@ export default function Navbar() {
                     {!isLogin && (
                         <>
                          <Button
-                         onClick={()=>navigate("/signup")}
-                        style={{
-                          color: "rgba(255, 116, 0, 1)",
-                          border: "4px solid rgba(0,0,0,.05)",
-                          height: "45px",
-                        }}
-                        shape="round"
-                        size="large"
+                          onClick={()=>navigate("/signup")}
+                          className="navbar-getstart-button"
+                          shape="round"
+                          size="large"
                       >
                         <span
                           style={{
@@ -53,12 +39,9 @@ export default function Navbar() {
                       </Button>
                     
                     <Button
-                      style={{
-                        backgroundColor: "rgb(32,14,50)",
-                        color: "#FFF",
-                      }}
                       shape="round"
                       size="large"
+                      className="navbar-login-button"
                       onClick={()=>navigate("/login")}
                     >
                       <span style={{ fontWeight: "700" }}>
@@ -70,10 +53,7 @@ export default function Navbar() {
 
                     {isLogin && (
                       <Button
-                        style={{
-                          backgroundColor: "rgb(32,14,50)",
-                          color: "#FFF",
-                        }}
+                        className="navbar-login-button"
                         shape="round"
                         size="large"
                         onClick={()=>{localStorage.clear(); window.location.href="/"}}

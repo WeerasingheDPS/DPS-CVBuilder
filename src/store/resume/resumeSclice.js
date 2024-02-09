@@ -96,7 +96,8 @@ const resumeSlice = createSlice({
     },
 
     addMainContent: (state, action) => {
-      state.mainContents = [...state.mainContents, action.payload];
+      state.mainContents.push(action.payload);
+     // state.mainContents = [...state.mainContents, action.payload];
     },
 
     addSubContent: (state, action) => {

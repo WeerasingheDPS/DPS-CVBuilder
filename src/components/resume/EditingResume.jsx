@@ -28,7 +28,7 @@ const EditingResume = () => {
           width: "800px",
         }}
       >
-        <Col span={24}>
+        <Col span={22}>
      <ResumeViewPage/>
         </Col>
       </Row>

@@ -110,7 +110,7 @@ export default function Login() {
                           marginBottom: "0px",
                           fontSize: "medium",
                           background: "transparent",
-                          border: "2px solod rgb(255,255,255)"
+                          border: "2px solid white"
                         }}
                         required
                         allowClear
@@ -130,6 +130,7 @@ export default function Login() {
                           padding: "6px 10px 6px",
                           marginBottom: "0px",
                           fontSize: "medium",
+                          border: "2px solid white"
                         }}
                         allowClear
                         onChange={(e) => setPassword(e.target.value)}

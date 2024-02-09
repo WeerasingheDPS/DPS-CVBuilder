@@ -374,15 +374,11 @@ export default function AddContent() {
                       {" "}
                     </Text>
                   </Title>
-                  <TextArea
+                  <ReactQuill
+                  style={{ wordWrap: 'break-word',width:'100%'}}
+                    theme="snow"
                     value={getValueById("description", activeContent.index, activeContent.key)}
-                    onChange={(e) => handleDescription(e)}
-                    allowClear
-                    rows={4}
-                    style={{
-                      boxShadow: "0 0 8px 0 rgba(0,0,0,.05)",
-                      borderRadius: "0",
-                    }}
+                    onChange={handleHtml}
                   />
                 </Col>
               </Row>

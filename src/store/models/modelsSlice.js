@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     applyJob: false,
-    collapsed:false,
+    collapsed:true,
     customContent:false,
     addLink:false,
     viewEditDetails:false,
@@ -27,8 +27,8 @@ const modelsSlice = createSlice({
         closeApplyJob:(state)=>{
             state.applyJob = false;
         },
-        setCollapsed:(state, action)=>{
-            state.collapsed= !action.payload;
+        setCollapsed:(state)=>{
+            state.collapsed= !state.collapsed;
         },
         openCustomContent:(state)=>{
             state.customContent = true;

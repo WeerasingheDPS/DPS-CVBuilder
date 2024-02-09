@@ -550,14 +550,13 @@ export default function EditPersonalDetails() {
                       {activeDetails.map((items) => {
                         return (
                           <Col span={24}>
-                            <Row gutter={10}>
+                            <Row gutter={{ xs: 4, sm: 6, md: 8, lg: 10 }}>
                               <Col span={18}>
                                 <Input
                                   value={getValue(items.key)}
                                   onChange={(e)=>{handleChange(items.key,e.target.value)}}
                                   className="input-w"
                                   placeholder={items.label}
-                                  size="large"
                                 />
                               </Col>
                               {(addLink && active === items.key) && <InputLink id={items.key}/>}
@@ -573,7 +572,7 @@ export default function EditPersonalDetails() {
                                   >
                                     Link
                                   </Button>
-                                  <spam
+                                  <span
                                     style={{
                                       color: "red",
                                       fontSize: "20px",
@@ -590,7 +589,7 @@ export default function EditPersonalDetails() {
                                     }}
                                   >
                                     <DeleteOutlined />
-                                  </spam>
+                                  </span>
                                 </Space>
                               </Col>
                             </Row>
