@@ -153,7 +153,9 @@ export default function ViewResume() {
   return (
     <>
       <Spin spinning={loading}>
+        
       <Row
+      gutter={20}
         style={{
           overflow: "hidden",
           display: "flex",
@@ -161,21 +163,25 @@ export default function ViewResume() {
         }}
       >
         <Col
-          span={12}
+        xl={12}
+        md={11}
+        sm={16}
+        xs={18}
           style={{
             overflowY: "scroll",
             flex: 1,
-            height: "100%",
+         //   height: "100%",
+          
           }}
         >
           <Row gutter={[0, 20]}>
-            <Col lg={24} xl={22}>
+            <Col span={24}>
               <Row justify='end' gutter={20}>
                 <Col>
                 <Button 
                 onClick={()=>navigate("/viewresumepage")}
                 type="primary"
-                size="large"
+                size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}       
                 style={{borderRadius: '0'}}>
                 View Resume
               </Button>
@@ -184,7 +190,7 @@ export default function ViewResume() {
                 <Button 
                 onClick={downloadPdf}
                 type="primary"
-                size="large"
+                size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}       
                 style={{borderRadius: '0'}}>
                 Download Resume
               </Button>
@@ -193,7 +199,7 @@ export default function ViewResume() {
               
             </Col>
             {!addContent && (
-              <Col span={22}>
+              <Col span={24}>
                 {!viewEdit && (
                   <PersonDetailsEditView/>
                 )}
@@ -203,11 +209,11 @@ export default function ViewResume() {
               </Col>
             )}
             {addContent && (
-              <Col span={22}>
+              <Col span={24}>
                 <AddContent/>
               </Col>
             )}
-            <Col span={22}>
+            <Col span={24}>
               {!addContent && (
                 <Row justify="center" gutter={[0, 15]}>
                   { mainContents &&
@@ -342,11 +348,14 @@ export default function ViewResume() {
           </Row>
         </Col>
         <Col
-          span={12}
-          style={{
-            overflowY: "auto",
+        xl={12}
+        md={13}
+        sm={24}
+            style={{
+            //overflowY: "auto",
             height: "80vh",
             flex: 1,
+            zIndex:2
           }}>
           <EditingResume ref={pdfRef}/>
         </Col>

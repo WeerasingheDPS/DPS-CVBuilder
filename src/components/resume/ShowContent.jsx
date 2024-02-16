@@ -17,7 +17,7 @@ export default function ShowContent({item}) {
           <Row justify="space-between" gutter={[15, 15]}>
             <Col span={24}>
               <Title level={3}>{item.contentTitle}</Title>
-              <hr style={{ border: "2px solid rgba(0,0,0,.6)" }} />
+              <hr style={{ border: "1.5px solid rgba(0,0,0,.6)" }} />
 
               {item.subContents[0].description &&
         
@@ -47,7 +47,7 @@ export default function ShowContent({item}) {
                       <Col span={24}>
                         {item.contentTitle &&
                           <Title level={3}>{item.contentTitle}</Title>}
-                        <hr style={{ border: "2px solid rgba(0,0,0,.6)", margin:'0' }}  />
+                        <hr style={{ border: "1.5px solid rgba(0,0,0,.6)", margin:'0' }}  />
                       </Col>
                       <Col span={24}>
                         {item.subContents &&

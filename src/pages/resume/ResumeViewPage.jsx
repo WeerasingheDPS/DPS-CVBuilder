@@ -42,9 +42,10 @@ const ResumeViewPage = () => {
   return (
     <>
       <Row id="resume-id" justify="center" align="middle">
-        <Col span={24} id="resumeData">
-          <Row justify="space-between">
-            <Col span={18}>
+        <Col span={24}
+         id="resumeData">
+          <Row>
+            <Col span={19}>
               <Row  gutter={[20, 10]}>
                 {personalData.name && (
                   <Col span={24}>
@@ -108,15 +109,11 @@ const ResumeViewPage = () => {
             </Col>
 
             {personalData.profilePicture && (
-              <Col>
+              <Col span={5}>
                 <Image
                   src={personalData.profilePicture}
                   alt="Profile_Picture"
-                  style={{
-                    borderRadius: "50%",
-                    width: "175px",
-                    height: "150px",
-                  }}
+                  className="profile-picture"
                 />
               </Col>
             )}

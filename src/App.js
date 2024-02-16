@@ -14,11 +14,20 @@ import SignUp from "./pages/SignUp";
 import ResumeViewPage from "./pages/resume/ResumeViewPage";
 import ChangePassword from "./pages/ChangePassword";
 import ResumeFullPage from "./pages/resume/ResumeFullPage";
+import { isRefreshTokenExpired } from "./api/config/checkToken";
+import { useEffect } from "react";
 
 
 function App() {
 
   const isLogin = localStorage.getItem("IS_LOGGED_IN") === null ? false : localStorage.getItem("IS_LOGGED_IN");
+
+  useEffect(() => {
+    if(isRefreshTokenExpired()){
+      localStorage.clear();
+    }
+
+  }, []);
 
   return (
    <>
@@ -32,7 +41,6 @@ function App() {
           <Route path="/viewresume" element={<ViewResume/>}/>
           <Route path="/viewresumepage" element={<ResumeFullPage/>}/>
           <Route path="/changepassword" element={<ChangePassword/>}/>
-
         </Route>
         }
 
@@ -41,8 +49,7 @@ function App() {
             <Route path="/login" element={<Login/>}></Route>
             <Route path="/signup" element={<SignUp/>}></Route>
         </Route>
-        <Route> 
-            
+        <Route>   
         </Route>
         </>
         

@@ -21,16 +21,16 @@
   @media only screen and (max-width: 580px) {
     .nav-bar-main-w{
         height: 7.5vh ;
-        .navbar-button{
-            button{
-                height: 16px !important;
-              //  font-size: 10px !important;
-            }
-            span{            
-                font-size: 13px !important;
-                line-height: 13px !important;
-            }
-        }
+        // .navbar-button{
+        //     button{
+        //         height: 16px !important;
+        //       //  font-size: 10px !important;
+        //     }
+        //     span{            
+        //         font-size: 13px !important;
+        //         line-height: 13px !important;
+        //     }
+        // }
       }
   }
 
@@ -39,16 +39,16 @@
         .navbar-getstart-button{
             display: none !important;
         }
-        .navbar-button{
-            button{
-                height: 12px !important;
-              //  font-size: 10px !important;
-            }
-            span{            
-                font-size: 10px !important;
-                line-height: 10px !important;
-            }
-        }
+        // .navbar-button{
+        //     button{
+        //         height: 12px !important;
+        //       //  font-size: 10px !important;
+        //     }
+        //     span{            
+        //         font-size: 10px !important;
+        //         line-height: 10px !important;
+        //     }
+        // }
       }
   }
 
@@ -65,15 +65,15 @@
         .navbar-getstart-button{
             display: none !important;
         }
-        .navbar-login-button{
+        // .navbar-login-button{
             
-            .ant-space-item{
-                height: 15px !important;
-                .ant-btn{
-                    height: 15px !important;
-                }
-            }
-        }
+        //     .ant-space-item{
+        //         height: 15px !important;
+        //         .ant-btn{
+        //             height: 15px !important;
+        //         }
+        //     }
+        // }
         
       }
   }

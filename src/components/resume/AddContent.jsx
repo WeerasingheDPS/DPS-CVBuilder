@@ -404,7 +404,7 @@ export default function AddContent() {
                       <Input
                         value={getValueById("title", activeContent.index, activeContent.key)}
                         className="input-w"
-                        size="large"
+                        size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}                    
                         placeholder="Enter title"
                         onChange={(e) => handleTitle(e)}
                       />
@@ -414,7 +414,7 @@ export default function AddContent() {
                         onClick={() => {
                           dispatch(openAddLink());
                         }}
-                        size="large"
+                        size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}                    
                         icon={<AiOutlineLink />}
                       >
                         Link
@@ -439,7 +439,7 @@ export default function AddContent() {
                     onChange={(e) => handleSubTitle(e)}
                     value={getValueById("subTitle", activeContent.index, activeContent.key)}
                     className="input-w"
-                    size="large"
+                    size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}                    
                     placeholder="Enter SubTitle"
                   />
                 </Col>
@@ -460,7 +460,7 @@ export default function AddContent() {
                    value={getValueById("city", activeContent.index, activeContent.key)}
                     onChange={(e) => handleCity(e)}
                     className="input-w"
-                    size="large"
+                    size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}                    
                     placeholder="Enter your job title"
                   />
                 </Col>
@@ -481,7 +481,7 @@ export default function AddContent() {
                     value={getValueById("country", activeContent.index, activeContent.key)}
                     onChange={(e) => handleCountry(e)}
                     className="input-w"
-                    size="large"
+                    size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}                    
                     placeholder="Enter your job title"
                   />
                 </Col>
@@ -512,8 +512,8 @@ export default function AddContent() {
                     </Col>
                     <Col span={14}>
                     <DatePicker 
-                    size="large" 
-                    placeholder="Month" 
+                      size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}                    
+                      placeholder="Month" 
                     className="input-w" 
                     picker="month"
                     allowClear
@@ -562,8 +562,8 @@ export default function AddContent() {
                   <Col span={10}>
                       <DatePicker
                    value={ endDateValue == null ? null : dayjs(endDateValue)}
-                    size="large"
-                        className="input-w"
+                   size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}                    
+                   className="input-w"
                         placeholder="Year"
                         format="YYYY"
                         picker="year"
@@ -574,8 +574,8 @@ export default function AddContent() {
                     <Col span={14}>
 
                     <DatePicker 
-                    size="large" 
-                    placeholder="Month" 
+                      size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}                    
+                      placeholder="Month" 
                     className="input-w" 
                     picker="month"
                     allowClear
@@ -648,22 +648,27 @@ export default function AddContent() {
                 </Col>
               </Row>
             )}
-            <Row justify='space-between' style={{ marginTop: "5%" }}>
+            <Row 
+              justify='space-between' 
+              style={{ marginTop: "5%" }}>
               <Col>
               <Button 
                 onClick={handleDelete}
                 icon={<DeleteOutlined />}
                 style={{ borderRadius: "0", color: 'red' }}
-                size="large">
+                size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}       
+                >
                 Delete
               </Button>
               </Col>
               <Col>
-                <Row justify="end" gutter={20}>
+                <Row 
+                  justify="end">
+                  <Space>
                   <Col>
                     <Button
                       style={{ borderRadius: "0" }}
-                      size="large"
+                      size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}       
                       onClick={()=> dispatch(closeAddContent())}
                     >
                       Cancel
@@ -675,11 +680,11 @@ export default function AddContent() {
                       style={{ borderRadius: "0" }}
                       icon={<CheckOutlined />}
                       type="primary"
-                      size="large"
-                    >
+                      size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}                    >
                       Save
                     </Button>
                   </Col>
+                  </Space>
                 </Row>
               </Col>
             </Row>

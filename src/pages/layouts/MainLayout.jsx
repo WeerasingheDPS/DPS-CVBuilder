@@ -16,15 +16,15 @@ export default function MainLayout() {
 
   return (
     <>
-       <Layout>
-          <Row
+        <Row 
             justify="center"
-            className='main-layout-navbar-w'
-          >
+            className='main-layout-navbar-w'>
             <Col span={24}>
               <Navbar/>
             </Col>
           </Row>
+       <Layout>
+    
           <Layout style={{ display: "flex", flexDirection: "row" }}>
             <Sidebar />
             <Layout style={{ backgroundColor: "white" }}>

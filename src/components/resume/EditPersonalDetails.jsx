@@ -318,7 +318,7 @@ export default function EditPersonalDetails() {
                 <Col>
                     <Space>
                     <Button 
-                        size="small" 
+                        size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}       
                         type="primary" 
                         style={{borderRadius: '0'}}
                         onClick={()=>dispatch(closeAddLink())}>
@@ -326,7 +326,7 @@ export default function EditPersonalDetails() {
                     </Button>
                     <Button 
                         onClick={()=>handleAdd(id)}
-                        size="small"  
+                        size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}       
                         type="primary" 
                         style={{borderRadius: '0'}}>
                         Add
@@ -414,7 +414,7 @@ export default function EditPersonalDetails() {
                     </Col>
                   </>
                 ) : (
-                  <Row align="bottom" gutter={10}>
+                  <Row align="bottom">
                     <Col>
                       <Image
                         style={{
@@ -427,7 +427,7 @@ export default function EditPersonalDetails() {
                       />
                     </Col>
                     <Col
-                      style={{ position: "absolute", bottom: 5, right: "35%" }}
+                     
                     >
                       <ImgCrop rotationSlider>
                         <Upload
@@ -567,7 +567,7 @@ export default function EditPersonalDetails() {
                                         dispatch(openAddLink());
                                         setActive(items.key);
                                     }}
-                                    size="large"
+                                    size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}       
                                     icon={<AiOutlineLink />}
                                   >
                                     Link
@@ -621,10 +621,9 @@ export default function EditPersonalDetails() {
               </Col>
               <Col span={24}>
                 <Row justify='end'> 
-                  <Space>
                   <Button 
                   onClick={()=>dispatch(closeViewEditDetails())}
-                  size="large" 
+                  size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}       
                   style={{border: '0'}}>
                   Cancel
                 </Button>
@@ -632,14 +631,12 @@ export default function EditPersonalDetails() {
                   type="primary"
                   htmlType="submit"
                   icon={<CheckOutlined />}
-                  size="large"
+                  size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}       
                   style={{
                     color: 'white',
-                    height: '50px', 
-                    width: '100px'}}> 
+                    }}> 
                   Save
                 </Button>
-                  </Space>
                 </Row>
               </Col>
             </Row>

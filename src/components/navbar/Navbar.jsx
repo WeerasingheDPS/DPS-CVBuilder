@@ -11,11 +11,12 @@ export default function Navbar() {
       <Row className="nav-bar-main-w"
       >
         <Col span={24}>
-          <Row justify="center">
+          <Row justify="center" align="middle">
             <Col span={20}>
               <Row justify="space-between" align="middle">
-                <Col  md={8} sm={9} xs={8}> 
-                  <Image src={logo} preview={false} />
+                <Col xl={5} lg={6} md={8} sm={10} xs={12} > 
+                  <Image   style={{maxWidth:"100%", height:"auto"}}
+                        src={logo} preview={false} />
                 </Col>
                 <Col>
                   <Space>
