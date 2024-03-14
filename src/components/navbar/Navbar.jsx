@@ -14,7 +14,7 @@ export default function Navbar() {
           <Row justify="center" align="middle">
             <Col span={20}>
               <Row justify="space-between" align="middle">
-                <Col xl={5} lg={6} md={8} sm={10} xs={12} > 
+                <Col xl={5} lg={6} md={6} sm={7} xs={8} > 
                   <Image   style={{maxWidth:"100%", height:"auto"}}
                         src={logo} preview={false} />
                 </Col>
@@ -26,8 +26,7 @@ export default function Navbar() {
                           onClick={()=>navigate("/signup")}
                           className="navbar-getstart-button"
                           shape="round"
-                          size="large"
-                      >
+                          size={{ xs: 'smaller', sm: 'small', md: 'middle', lg: 'large', xl: 'larger', xxl: 'large' }}                       >
                         <span
                           style={{
                             color: "rgba(0, 0, 0, 1)",
@@ -41,8 +40,7 @@ export default function Navbar() {
                     
                     <Button
                       shape="round"
-                      size="large"
-                      className="navbar-login-button"
+                      size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}                       className="navbar-login-button"
                       onClick={()=>navigate("/login")}
                     >
                       <span style={{ fontWeight: "700" }}>
@@ -56,8 +54,7 @@ export default function Navbar() {
                       <Button
                         className="navbar-login-button"
                         shape="round"
-                        size="large"
-                        onClick={()=>{localStorage.clear(); window.location.href="/"}}
+                        size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}                         onClick={()=>{localStorage.clear(); window.location.href="/"}}
                       >
                         <span style={{ fontWeight: "700" }}>
                           Logout <LogoutOutlined />

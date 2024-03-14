@@ -78,7 +78,9 @@ export default function ShowSubContent({ item }) {
               </Row>
             </Col>
             {item.description &&
-          <Col span={24} style={{ width: "500px !important" }}>
+          <Col span={24}
+       //    style={{ width: "500px !important" }}
+           >
                   <div
                     className=" format-text-w"
                     dangerouslySetInnerHTML={{

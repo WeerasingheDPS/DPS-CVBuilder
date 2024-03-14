@@ -22,7 +22,7 @@ export default function ShowContent({item}) {
               {item.subContents[0].description &&
         
                   <div
-                    className=" format-text-w"
+                    className="format-text-w"
                     dangerouslySetInnerHTML={{
                       __html: item.subContents[0].description,
                     }}

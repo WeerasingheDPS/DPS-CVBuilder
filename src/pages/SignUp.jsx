@@ -72,6 +72,7 @@ export default function SignUp() {
             const response = await postData(requestData);
             if(response.data.success){
               message.success("User is registered successfully");
+              window.location.href("/login")
               setEmail('');
               setPassword('');
               setConfirmPassword('');
@@ -204,7 +205,7 @@ export default function SignUp() {
                         type="primary"
                         loading={loading}
                         style={{
-                          padding: "10px 0 35px",
+                          padding: "5px 0 30px",
                           fontSize: "medium",
                           fontWeight: "500",
                         }}

@@ -41,11 +41,11 @@ const ResumeViewPage = () => {
   }, []);
   return (
     <>
-      <Row id="resume-id" justify="center" align="middle">
+      <Row id="resume-id" className="resume-view-main-w" >
         <Col span={24}
          id="resumeData">
           <Row>
-            <Col span={19}>
+            <Col span={21}>
               <Row  gutter={[20, 10]}>
                 {personalData.name && (
                   <Col span={24}>
@@ -109,7 +109,7 @@ const ResumeViewPage = () => {
             </Col>
 
             {personalData.profilePicture && (
-              <Col span={5}>
+              <Col span={3}>
                 <Image
                   src={personalData.profilePicture}
                   alt="Profile_Picture"

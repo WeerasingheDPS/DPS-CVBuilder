@@ -59,6 +59,9 @@ export default function Sidebar (){
         ]
    
     const onClick = ({ key }) => {
+        if(isCollapsed){
+            toggleCollapsed();
+        }
             navigate(key);
     
     };
@@ -80,11 +83,13 @@ export default function Sidebar (){
                 position: 'sticky',
                 top: '15vh',
                 backgroundColor: 'white',
-                minWidth: isCollapsed ? '60px' : "150px",
+                minWidth: isCollapsed ? '50px' : "250px",
+                paddingTop:"4%",
                 left: '0',
                 overflow: 'auto',
                 scrollbarWidth: '0',
-                maxHeight: '85vh'
+                maxHeight: '85vh',
+               // zIndex: "9999"
             }} className='sidebar-main-w'>
                 <Col span={24}>
                     <Row style={{
@@ -95,6 +100,7 @@ export default function Sidebar (){
                         <Col span={24} >
                             <Row >
                                 <Button
+                                    className='collaps-btn'
                                     onClick={toggleCollapsed}
                                     style={{
                                         marginBottom: 16,

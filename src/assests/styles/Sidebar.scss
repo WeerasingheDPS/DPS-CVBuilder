@@ -2,14 +2,32 @@
   ul {  
     .ant-menu-item{
     height: 45px;
-    
+    &:hover{
+      background-color: rgba(255, 116, 0, .1) !important;
     }
+    }
+
+    .ant-menu-submenu-title{
+      height: 45px;
+      color: #000 !important;
+      &:hover{
+        background-color: rgba(255, 116, 0, .1) !important;
+      }
+      }
+
     svg{
       width: 18px;
       height: 18px;
     }
 .ant-menu-item-selected{
             font-weight: 600;
+            background-color: rgba(255, 116, 0, .1);
+            color: rgba(255, 116, 0, 1);
+            &:hover{
+              background-color: rgba(255, 116, 0, .1);
+            }
         }
+        
 }
+
 }

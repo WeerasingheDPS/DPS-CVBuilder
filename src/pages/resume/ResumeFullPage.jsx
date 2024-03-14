@@ -15,7 +15,7 @@ const ResumeFullPage = () => {
   return (
     <>
       <Row justify="center">
-        <Col span={16}>
+        <Col style={{padding: "3%", boxShadow: "0px 0px 5px  rgba(0,0,0,.2)", minHeight: "90vh"}} span={18}>
           <ResumeViewPage/>
         </Col>
       </Row>

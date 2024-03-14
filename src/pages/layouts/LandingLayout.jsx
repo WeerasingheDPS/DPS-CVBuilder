@@ -21,7 +21,7 @@ export default function LandingLayout() {
               <Navbar/>
             </Col>
           </Row>
-          <Row>
+          <Row className='landing-content-w'>
               {location.pathname ===  "/" ? <Col span={24}> <LandingPage/></Col> : <Col span={24}><Outlet/></Col>}
               <Col span={24}>
                 {location.pathname === "/" ? <Col id='4footer' span={24}> <Footer/></Col> : null}

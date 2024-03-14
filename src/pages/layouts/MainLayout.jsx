@@ -25,7 +25,7 @@ export default function MainLayout() {
           </Row>
        <Layout>
     
-          <Layout style={{ display: "flex", flexDirection: "row" }}>
+          <Layout style={{ display: "flex", flexDirection: "row" ,width:"100%" }}>
             <Sidebar />
             <Layout style={{ backgroundColor: "white" }}>
               <Content

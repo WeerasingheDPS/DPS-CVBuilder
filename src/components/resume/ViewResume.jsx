@@ -82,9 +82,14 @@ export default function ViewResume() {
 
   const downloadPdf = async () => {
     const inputRef = document.getElementById("resume-id");
-  
 
-      html2canvas(inputRef).then((canvas) => {
+    // Configure html2canvas to capture the whole document with proper styles
+    html2canvas(inputRef, {
+        scale: 2, // Increase scale to improve resolution
+        useCORS: true, // Enable cross-origin resource sharing
+        scrollY: -window.scrollY, // Capture the whole document, not just the visible part
+        scrollX: -window.scrollX
+    }).then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF("p", "pt", "a4");
         const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -95,16 +100,39 @@ export default function ViewResume() {
         
         // Calculate the center position for the image on the PDF page
         const imgX = (pdfWidth - imgWidth * ratio) / 2;
-        //const imgY = 30;
         const imgY = (pdfHeight - imgHeight * ratio) / 2;
-  
-        pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
-      // pdf.addImage(imgData, 'JPEG', 0, 0, imgX, imgY);
 
+        pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
         pdf.save('Resume.pdf');
-      });
+    });
+};
+
+
+  // const downloadPdf = async () => {
+  //   const inputRef = document.getElementById("resume-id");
+  
+
+  //     html2canvas(inputRef).then((canvas) => {
+  //       const imgData = canvas.toDataURL('image/png');
+  //       const pdf = new jsPDF("p", "pt", "a4");
+  //       const pdfWidth = pdf.internal.pageSize.getWidth();
+  //       const pdfHeight = pdf.internal.pageSize.getHeight();
+  //       const imgWidth = canvas.width;
+  //       const imgHeight = canvas.height;
+  //       const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+        
+  //       // Calculate the center position for the image on the PDF page
+  //       const imgX = (pdfWidth - imgWidth * ratio) / 2;
+  //       //const imgY = 30;
+  //       const imgY = (pdfHeight - imgHeight * ratio) / 2;
+  
+  //       pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+  //     // pdf.addImage(imgData, 'JPEG', 0, 0, imgX, imgY);
+
+  //       pdf.save('Resume.pdf');
+  //     });
    
-  };
+  // };
   
   const downloadPdfs = async() =>{
      const inputRef = document.getElementById("resume-id");
@@ -155,33 +183,34 @@ export default function ViewResume() {
       <Spin spinning={loading}>
         
       <Row
-      gutter={20}
+     // gutter={20}
         style={{
           overflow: "hidden",
           display: "flex",
-          height: "80vh",
+          height: "90%",
         }}
       >
         <Col
+        //span={12}
         xl={12}
-        md={11}
-        sm={16}
+        md={10}
+        sm={24}
         xs={18}
-          style={{
-            overflowY: "scroll",
-            flex: 1,
-         //   height: "100%",
+          // style={{
+          //   overflowY: "auto",
+          //   flex: 1,
+          //  height: "100%",
           
-          }}
+          // }}
         >
           <Row gutter={[0, 20]}>
             <Col span={24}>
-              <Row justify='end' gutter={20}>
+              <Row justify='end' gutter={10}>
                 <Col>
                 <Button 
                 onClick={()=>navigate("/viewresumepage")}
                 type="primary"
-                size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}       
+                size={{ xs: 'smaller', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}       
                 style={{borderRadius: '0'}}>
                 View Resume
               </Button>
@@ -348,15 +377,17 @@ export default function ViewResume() {
           </Row>
         </Col>
         <Col
+        //span={12}
         xl={12}
-        md={13}
+        md={14}
         sm={24}
-            style={{
-            //overflowY: "auto",
-            height: "80vh",
-            flex: 1,
-            zIndex:2
-          }}>
+          //   style={{
+          //   overflowY: "auto",
+          //   height: "100%",
+          //   flex: 1,
+          //   zIndex:2
+          // }}
+          >
           <EditingResume ref={pdfRef}/>
         </Col>
       </Row>

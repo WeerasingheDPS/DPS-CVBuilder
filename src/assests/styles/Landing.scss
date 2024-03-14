@@ -1,7 +1,9 @@
 .landing-home-main{
-    min-height: 70vh;
-    background: url('../images/Landing-home.png');
-    background-size: cover;
+   // padding-top: 10%;
+    min-height: 90%;
+    background-color: rgba(230, 230, 230, 1);
+   // background: url('../images/Landing-home.png');
+   // background-size: cover;
 
      .huge-title-white{
         font-size: 55px;
@@ -29,4 +31,10 @@
         color: rgba(255, 116, 0, 1);
     }
 
+
+}
+
+.landing-content-w{
+    padding-top: 5%;
+    min-height: 75vh;
 }

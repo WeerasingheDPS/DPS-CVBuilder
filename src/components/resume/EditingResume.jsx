@@ -23,12 +23,14 @@ const EditingResume = () => {
         align="middle"
         style={{
           padding: "10px",
-          transform: "scale(.75)",
+          transform: "scale(.95)",
           transformOrigin: "top left",
-          width: "800px",
+         // width: "800px",
         }}
       >
-        <Col xs={12} sm={14} md={16} lg={20} xl={22} xxl={24}>
+        <Col span={24}
+        // xs={12} sm={14} md={16} lg={20} xl={22} xxl={24}
+        >
      <ResumeViewPage/>
         </Col>
       </Row>

@@ -1,4 +1,5 @@
 import { ArrowsAltOutlined } from "@ant-design/icons";
+import Landing from '../../assests/images/Landing-01.png';
 import {
     Form,
     Image,
@@ -16,39 +17,15 @@ import { Link } from "react-scroll";
 export default function LandingHome() {
   return (
     <>
-    <Row justify='space-around' align='middle' className='landing-home-main'>
-        <Col  span={22}>
-            <Row gutter={[0,60]} align='middle'>
+    <Row className='landing-home-main'>
+        <Col  span={24}>
+            <Row gutter={[0,10]}>
                 <Col span={24}>
-                    <Text className="huge-title-white">
-                        Unlock Your Career 
-                    </Text>
-                    <br/>
-                    <Text className="huge-title-white">
-                    Success with Our
-                    </Text>
-                    <br/>
-                    <Text className="huge-title-orange">
-                    DPS CV Builder
-                    </Text>
+                   <Image preview={false} src={Landing}/>
                 </Col>
                 <Col span={24}>
-                    <Row gutter={20} align='bottom'>
-                        <Col>
-                            <Text className="normal-title">
-                                Ready To Land Your
-                            </Text>
-                            <br/>
-                            <Text className="normal-title-orange">
-                                 Dream Job
-                            </Text>
-                            <br/>
-                            <Text className="normal-title">
-                                DPS CV Builder Let's Build Your CV Today!
-                            </Text>
-                        </Col>
-                        <Col>
-
+                    <Row justify='center'>
+                        <Col span={18}>
                             <Link 
                             to="2about"
                             smooth={true}
@@ -56,7 +33,7 @@ export default function LandingHome() {
                             duration={500} >
                             <Button 
                                 shape="round" 
-                                size="large" 
+                                size={{ xs: 'small', sm: 'small', md: 'middle', lg: 'large', xl: 'large', xxl: 'large' }}                         onClick={()=>{localStorage.clear(); window.location.href="/"}}
                                 type="primary" 
                                 icon={<ArrowsAltOutlined/>}>
                                     

@@ -1,81 +1,33 @@
 @media only screen and (max-width: 1000px) {
-    .nav-bar-main-w{
-        height: 12vh;
-
-      }
+    
   }
 
 
   @media only screen and (max-width: 900px) {
-    .nav-bar-main-w{
-        height: 10vh;
-      }
+    
   }
 
   @media only screen and (max-width: 700px) {
-    .nav-bar-main-w{
-        height: 9.5vh;
-      }
+    
   }
 
   @media only screen and (max-width: 580px) {
-    .nav-bar-main-w{
-        height: 7.5vh ;
-        // .navbar-button{
-        //     button{
-        //         height: 16px !important;
-        //       //  font-size: 10px !important;
-        //     }
-        //     span{            
-        //         font-size: 13px !important;
-        //         line-height: 13px !important;
-        //     }
-        // }
-      }
+    
   }
 
   @media only screen and (max-width: 500px) {
     .nav-bar-main-w{
-        .navbar-getstart-button{
-            display: none !important;
-        }
-        // .navbar-button{
-        //     button{
-        //         height: 12px !important;
-        //       //  font-size: 10px !important;
-        //     }
-        //     span{            
-        //         font-size: 10px !important;
-        //         line-height: 10px !important;
-        //     }
-        // }
+      .navbar-getstart-button{ 
+        display: none;
       }
-  }
-
-  @media only screen and (max-width: 400px) {
-    :where(.css-dev-only-do-not-override-14wefk7).ant-btn.ant-btn-lg {
-        font-size: 12px ;
-        height: 20px;
-        padding: 0;
-        //padding: 6.428571428571429px 15px;
-        border-radius: 8px;
-    }
-    .nav-bar-main-w{
-        height: 5.7vh;
-        .navbar-getstart-button{
-            display: none !important;
-        }
-        // .navbar-login-button{
-            
-        //     .ant-space-item{
-        //         height: 15px !important;
-        //         .ant-btn{
-        //             height: 15px !important;
-        //         }
-        //     }
-        // }
         
       }
   }
 
+  @media only screen and (max-width: 400px) {
+    .nav-bar-main-w{
+       
+  }
 
+
+  }

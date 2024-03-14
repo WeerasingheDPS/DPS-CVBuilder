@@ -31,7 +31,7 @@
     } 
     .select-month-w{
         .ant-select-selector{
-            width: 110px !important;
+           // width: 110px !important;
             background-color: rgba(243,244,246,255);
         border: none;
         outline: none !important;
@@ -49,12 +49,12 @@
         div{
             border-radius: 0 !important;
            
-            width: 100% !important;
+         //   width: 100% !important;
         }
     }
     .ql-editor{
     min-height: 25vh;
-    max-width: 80vh;
+    //max-width: 80vh;
     }
 }
 
@@ -89,15 +89,21 @@
             line-height: 1.5;
             font-size: 14px ;
             word-wrap: break-word;
+            width: auto;
             margin: 0 !important;
         }
     } 
 }
 
+.resume-view-main-w{
 
-.profile-picture{
+    padding: 2%;
+
+    .profile-picture{
         border-radius: 50%;
-        width: 150px !important;
-        height: 150px !important;
-      
+        width: 100%;
 }
+}
+
+
+
