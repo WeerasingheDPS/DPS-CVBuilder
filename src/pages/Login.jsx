@@ -34,7 +34,7 @@ export default function Login() {
     const handleEmailChange = (e) => {
       const newEmail = e.target.value;
       setEmail(newEmail);
-      setIsValidEmail(validateEmail(newEmail));
+     // setIsValidEmail(validateEmail(newEmail));
     };
     const navigate = useNavigate();
     const dispatch = useDispatch();

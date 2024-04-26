@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row, Typography, Collapse,Spin } from "antd";
+import { Button, Card, Col, Row, Typography, Collapse,Spin, message } from "antd";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useState, useEffect, useRef } from "react";
@@ -6,8 +6,10 @@ import EditPersonalDetails from "./EditPersonalDetails";
 import PersonDetailsEditView from "./PersonDetailsEditView";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  closeLoading,
   openAddContent,
   openCustomContent,
+  openLoading,
   openViewEditDetails,
 } from "../../store/models/modelsSlice";
 import CustomContentModel from "./CustomContentModel";
@@ -17,7 +19,9 @@ import { setActiveContent, setMainContents } from "../../store/resume/resumeScli
 import EditingResume from "./EditingResume";
 import ResumeViewPage from "../../pages/resume/ResumeViewPage";
 import GetResumeData from "../../api/getdata/getResumeData";
-import { postData } from "../../api/apiProviderService";
+import { downloadPdfFromFireBase, postData, processDownloadResume } from "../../api/apiProviderService";
+import { saveAs } from "file-saver";
+import { downloadResume } from "../../api/resume/resumeService";
 
 
 const { Title, Text } = Typography;
@@ -36,6 +40,8 @@ export default function ViewResume() {
 
   const personalData = useSelector((state) => state.resume.personalData);
   let hasResume = localStorage.getItem("HAS_RESUME");
+
+  const userId = localStorage.getItem("USER_ID");
 
 
   useEffect(() => {
@@ -80,7 +86,7 @@ export default function ViewResume() {
       handleContent(data);
   };
 
-  const downloadPdf = async () => {
+  const downloadPdfsssss = async () => {
     const inputRef = document.getElementById("resume-id");
 
     // Configure html2canvas to capture the whole document with proper styles
@@ -134,48 +140,36 @@ export default function ViewResume() {
    
   // };
   
-  const downloadPdfs = async() =>{
-     const inputRef = document.getElementById("resume-id");
-
-  //  try{
-  //   html2canvas(inputRef).then((canvas) =>{
-  //     const imgData = canvas.toDataURL('image/png');
-  //      const pdf = new jsPDF();
-  //     const pdfWidth = pdf.internal.pageSize.getWidth;
-  //     const pdfHeight = pdf.internal.pageSize.getHeight;
-  //     const imgWidth = canvas.width;
-  //     const imgHeight = canvas.height;
-  //     const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-  //     const imgx = (pdfWidth - imgWidth * ratio) / 2;
-  //     //const imgY = (pdfHeight - imgHeight * ratio) / 2;
-
-  //     const imgy = 30;
-  //     pdf.addImage(imgData, 'PNG', imgx, imgy, imgWidth * ratio, imgHeight * ratio);
-  //     pdf.save('Resume.pdf');
-
-  //   })
-  //  }catch(e){
-  //   console.log(e);
-  //  }
-
-    const sdata = {
-      resume: document.getElementById("resume-id").innerHTML
+  const downloadPdf = async() =>{
+    dispatch(openLoading());
+    const resume = {
+      userId,
+      personalData,
+      mainContents
     }
-    const sendData = {
-      url: `resume/download/1`,
-      data: sdata
+
+    const data = {
+      url: `resume/download/${userId}`, 
+      data: resume
     }
 
     try{
-      const response = await postData(sendData);
-      console.log(response);
 
+      // const downUrl = "https://firebasestorage.googleapis.com/v0/b/dps-cv-builder-01.appspot.com/o/dps-cv-builder%2FDULANJANA-WEERASINGHE-FlowCV-Resume-20240307.pdf?alt=media&token=a851b663-27a5-4595-876a-17e8e219af7d";
+      // const down = downloadPdfFromFireBase(downUrl);
+       const response = await processDownloadResume(data);
+      // console.log(down);
+      if(response.data.success){
+        const bytesArray = response.data.result;
+        const fileName = `${(personalData.name != null ? personalData.name : "resume") + ".pdf"}`;
+        downloadResume(bytesArray, fileName);
+        dispatch(closeLoading());
     }
-    catch(e){
-      console.log(e);
+  }catch(e){
+      console.log(e.message)
+      message.error("Error download resume! Try again later.");
+      dispatch(closeLoading());
     }
-    
-
   }
 
   return (

@@ -176,7 +176,7 @@ export default function EditPersonalDetails() {
     dispatch(openLoading());
     let temp = personalData.profilePicture;
     if (imageUpload) {
-      const imageRef = ref(storage, `dps-cv-builder/resumes/${userId}`);
+      const imageRef = ref(storage, `dps-cv-builder/profile-photos/${userId}`);
       await uploadBytes(imageRef, imageUpload)
         .then(() => {
           console.log(imageUpload);

@@ -66,9 +66,11 @@ export default function ShowSubContent({ item }) {
                     <Text>
                       {item.city}
                     </Text>}
-                     {
-                    (<Text>
-                    </Text>)}
+                    
+                     {(item.city != null && item.country != null)
+                          ?  <Text> &nbsp; - &nbsp;</Text>
+                          : null}
+                    
                     {item.country &&
                      <Text>
                      {item.country}

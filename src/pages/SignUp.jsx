@@ -30,18 +30,31 @@ export default function SignUp() {
 
   const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
+    let validate = false;
+    try{
+         validate = emailPattern.test(email);
+    }catch(e){
+      console.log(e);
+    }
+    return validate;
   };
 
   const handleEmailChange = (e) => {
+    console.log(e.target.value);
     const newEmail = e.target.value;
-    setEmail(newEmail);
-    setIsValidEmail(validateEmail(newEmail));
+    setEmail(e.target.value);
+   // setIsValidEmail(validateEmail(newEmail));
   };
   const validatePassword = (password) => {
     // At least 8 characters, at least one uppercase letter, one lowercase letter, and one digit
     const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-    return passwordPattern.test(password);
+    try{
+      return passwordPattern.test(password);
+    }catch(e){
+      console.log(e.message)
+      return  false;
+    }
+   
   };
 
   const handlePasswordChange = (e) => {
@@ -70,28 +83,30 @@ export default function SignUp() {
       }
         try{
             const response = await postData(requestData);
+            console.log(response);
             if(response.data.success){
+              console.log(response.data);
               message.success("User is registered successfully");
-              window.location.href("/login")
-              setEmail('');
-              setPassword('');
-              setConfirmPassword('');
+              navigate("/login");
+              setEmail("");
+              setPassword("");
+              setConfirmPassword("");
               setLoading(false);
             }
         }catch(e){
           console.log(e.message);
           message.error(e.message);
-          setEmail('');
-          setPassword('');
-          setConfirmPassword('');
+          setEmail("");
+          setPassword("");
+          setConfirmPassword("");
           setLoading(false);
         }
        
     }else{
       message.error("Please fill all and try again!");
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
       setLoading(false);
     }
     
@@ -132,14 +147,15 @@ export default function SignUp() {
                       name="email"
                     >
                       <Input
-                        required
+                        value={email}
                         onChange={handleEmailChange}
+                       // minLength={100}
                         style={{
                           padding: "6px 10px 6px",
                           border: "2px solid white",
                           fontSize: "medium",
                         }}
-                        allowClear
+                        //allowClear
                       />
                     { email &&
                     (isValidEmail ? null : <Text type='danger'>Email is not valid!</Text>)}

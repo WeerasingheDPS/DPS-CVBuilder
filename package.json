@@ -12,6 +12,7 @@
     "antd-img-crop": "^4.12.2",
     "axios": "^1.5.0",
     "date-fns": "^2.30.0",
+    "file-saver": "^2.0.5",
     "firebase": "^10.8.1",
     "firebase-tools": "^13.4.1",
     "html2canvas": "^1.4.1",
