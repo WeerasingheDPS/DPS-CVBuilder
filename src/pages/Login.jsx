@@ -23,7 +23,7 @@ const {Link, Title, Text } = Typography;
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isValidEmail, setIsValidEmail] = useState(false);
+    const [isValidEmail, setIsValidEmail] = useState(true);
     const [loading, setLoading] = useState(false);
 
     const validateEmail = (email) => {

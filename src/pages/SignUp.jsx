@@ -21,7 +21,7 @@ const { Link, Title, Text } = Typography;
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
-  const [isValidEmail, setIsValidEmail] = useState(false);
+  const [isValidEmail, setIsValidEmail] = useState(true);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isValidPassword, setIsValidPassword] = useState(false);

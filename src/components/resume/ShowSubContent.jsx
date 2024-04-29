@@ -23,9 +23,10 @@ export default function ShowSubContent({ item }) {
                  {item.title &&
                   <Link href={item.link}>
                     <Text strong>
-                      {item.title}
+                      {item.title},{" "}
                     </Text>
-                  </Link>}<br/>
+                  </Link>}
+                  <br/>
                   {item.subTitle &&
                     <Text>
                     {item.subTitle}

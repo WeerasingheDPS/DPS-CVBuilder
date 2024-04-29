@@ -155,16 +155,16 @@ export default function ViewResume() {
 
     try{
 
-      // const downUrl = "https://firebasestorage.googleapis.com/v0/b/dps-cv-builder-01.appspot.com/o/dps-cv-builder%2FDULANJANA-WEERASINGHE-FlowCV-Resume-20240307.pdf?alt=media&token=a851b663-27a5-4595-876a-17e8e219af7d";
-      // const down = downloadPdfFromFireBase(downUrl);
-       const response = await processDownloadResume(data);
-      // console.log(down);
+      const response = await processDownloadResume(data);
       if(response.data.success){
         const bytesArray = response.data.result;
         const fileName = `${(personalData.name != null ? personalData.name : "resume") + ".pdf"}`;
         downloadResume(bytesArray, fileName);
         dispatch(closeLoading());
-    }
+      } else{
+        message.error("Error download resume! Try again later.");
+        dispatch(closeLoading());
+      }
   }catch(e){
       console.log(e.message)
       message.error("Error download resume! Try again later.");
@@ -245,7 +245,7 @@ export default function ViewResume() {
                     if(mainItem != null){
                       return (
                         <Col span={24}>
-                          <Row justify="center">
+                          <Row justify="start">
                             <Col span={24}>
                               <Collapse
                                 style={{
@@ -254,14 +254,14 @@ export default function ViewResume() {
                                   cursor: "pointer",
                                 }}
                                 ghost
-                                collapsible="header"
+                                //collapsible="header"
                                 expandIconPosition="end"
                                 //defaultActiveKey={["1"]}
                                 items={[
                                   {
                                     key: "1",
                                     label: (
-                                      <Row justify="center">
+                                      <Row justify="start">
                                         <Col
                                           style={{
                                             boxShadow: "0 0 30px rgba(0,0,0,.1)",
@@ -284,7 +284,7 @@ export default function ViewResume() {
                                     ),
                                     children: (
                                       <>
-                                        <Row gutter={[20, 20]}>
+                                        <Row gutter={[20, 20]} justify='center'>
 
                                           {mainItem.subContents.length === 0 ? null :
                                           mainItem.subContents.map((subItem) => {
@@ -297,7 +297,7 @@ export default function ViewResume() {
                                               <>
                                                 {subItem != null &&
                                                   <Col
-                                                  span={24}
+                                                  span={20}
                                                   onClick={()=>
                                                     handleContent(data)
                                                   }
@@ -311,7 +311,18 @@ export default function ViewResume() {
                                                   >
                                                     {subItem.title === null
                                                       ? subTitle
-                                                      : subItem.title}
+                                                      : subItem.title}, {" "}
+                                          
+                                                  </Text>
+
+                                                  <Text
+                                                    style={{
+                                                      margin: "0",
+                                                      fontSize: "20px",
+                                                      fontWeight: "600",
+                                                    }}
+                                                  >
+                                                      {subItem.subTitle}
                                                   </Text>
                                                 </Col>}
                                               </>

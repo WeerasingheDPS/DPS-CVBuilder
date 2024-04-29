@@ -20,6 +20,7 @@ import {
   LinkedinOutlined,
   GithubOutlined,
 } from "@ant-design/icons";
+import { FaGraduationCap } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { closeCustomContent, openAddContent } from "../../store/models/modelsSlice";
 import { useState } from "react";
@@ -36,8 +37,8 @@ const customList = [
   },
   {
     key:1,
-    icon: "",
-    title: "Education",
+    icon: <FaGraduationCap />,
+    title: "Educationwddw",
     content:
       " Show off your primary education, college degrees & exchange semesters.",
   },
