@@ -4,7 +4,7 @@
   status = 200
 
 [[redirects]]
-  from = "http://dpscvbuilder.netlify.app/*"
+  from = "https://dpscvbuilder.netlify.app/*"
   to = "http://65.2.141.117:8080"
   status = 301
   force = true
