@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
-axios.defaults.baseURL = "http://65.2.141.117:8090/";
+axios.defaults.baseURL = "http://65.2.141.117:8080/";
 
 
 // Function to refresh the token. Replace this with your actual token refresh logic.
