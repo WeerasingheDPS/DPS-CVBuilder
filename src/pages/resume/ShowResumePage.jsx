@@ -17,6 +17,7 @@ export default function ShowResumePage() {
   const personalData = useSelector((state)=>state.resume.personalData);
   let hasResume = localStorage.getItem("HAS_RESUME");
 
+
   useEffect(() => {
       GetResumeData(dispatch);
   }, []);

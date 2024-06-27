@@ -17,6 +17,7 @@ import {
   message,
 } from "antd";
 import { LogIn } from "../api/apiProviderService";
+import { tr } from "date-fns/locale";
 const {Link, Title, Text } = Typography;
 
 
@@ -42,7 +43,7 @@ export default function Login() {
     
     const submitHandler = async () => {
       setLoading(true);
-      if(validateEmail){
+      if(true){
         let userCredentials = {
           email: email,
           password: password
