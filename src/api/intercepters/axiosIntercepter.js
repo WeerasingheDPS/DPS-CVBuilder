@@ -3,7 +3,7 @@ import { jwtDecode } from 'jwt-decode';
 
 // axios.defaults.baseURL = "http://13.201.84.195:8090/";
 // axios.defaults.baseURL = "http://localhost:8080/api/v1/";
-axios.defaults.baseURL = "http://13.201.16.53:8080/api/v1/";
+axios.defaults.baseURL = "https://13.201.16.53:8080/api/v1/";
 
 
 
