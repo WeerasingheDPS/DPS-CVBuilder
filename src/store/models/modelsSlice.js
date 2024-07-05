@@ -9,6 +9,7 @@ const initialState = {
     addContent:false,
     loading:false,
     canselJob:false,
+    registrationComplete:false,
 }
 
 const modelsSlice = createSlice({
@@ -66,6 +67,14 @@ const modelsSlice = createSlice({
         closeCanselJob:(state)=>{
             state.canselJob = false;
         },
+        openRegistrationComplete:(state)=>{
+            state.registrationComplete= true;
+        },
+        closeRegistrationComplete:(state)=>{
+            state.registrationComplete = false;
+        },
+
+        
     }
 })
 
@@ -86,7 +95,9 @@ export const {
     openLoading,
     closeLoading,
     openCanselJob,
-    closeCanselJob
+    closeCanselJob,
+    closeRegistrationComplete,
+    openRegistrationComplete
 } = modelsSlice.actions;
 
 export const getLoading = (state) => state.models.loading;

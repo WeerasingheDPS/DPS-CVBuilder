@@ -18,6 +18,8 @@ import {
 } from "antd";
 import { LogIn } from "../api/apiProviderService";
 import { tr } from "date-fns/locale";
+import RegistrationCompleteModel from "../components/models/RegistrationCompleteModel";
+import { openRegistrationComplete } from "../store/models/modelsSlice";
 const {Link, Title, Text } = Typography;
 
 
@@ -26,6 +28,9 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [isValidEmail, setIsValidEmail] = useState(true);
     const [loading, setLoading] = useState(false);
+
+    const [success, setSuccess] = useState(true);
+    const [error, setError] = useState(null);
 
     const validateEmail = (email) => {
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -58,13 +63,9 @@ export default function Login() {
               localStorage.setItem("ACCESS_TOKEN", response.data.result.accessToken);
               localStorage.setItem("REFRESH_TOKEN", response.data.result.refreshToken);
               localStorage.setItem("IS_LOGGED_IN", true);
-              localStorage.setItem("USER", JSON.stringify(response.data.result.user));
-              localStorage.setItem("USER_ID", response.data.result.user.id);
-              //window.history.replaceState(null,"resume");
-              window.location.href = "resume";
-             // navigate("/resume");
-             
-              
+              localStorage.setItem("USER", JSON.stringify(response.data.result.systemUser));
+              localStorage.setItem("USER_ID", response.data.result.systemUser.id);
+              window.location.href = "resume";              
               setEmail('');
               setPassword('');
               setLoading(false);
@@ -72,6 +73,9 @@ export default function Login() {
           }catch(e){
             console.log(e.message);
             message.error("Invalid Usernae or password!");
+            setSuccess(false);
+            setError("Invalid Usernae or password!");
+            dispatch(openRegistrationComplete())
             setEmail('');
             setPassword('');
             setLoading(false);
@@ -88,6 +92,7 @@ export default function Login() {
   return (
     <>
       <Row className="login-main" align='middle'>
+        <RegistrationCompleteModel success={success} error={error}/>
         <Col span={24}>
           <Row align="middle" justify='center'>
             <Col span={10}   >
@@ -134,7 +139,7 @@ export default function Login() {
                           border: "2px solid white"
                         }}
                         allowClear
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => {setPassword(e.target.value);console.log(password)}}
                       />
                     </Form.Item>
 

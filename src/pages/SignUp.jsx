@@ -17,6 +17,9 @@ import {
   Spin,
 } from "antd";
 import { postData } from "../api/apiProviderService";
+import { useDispatch } from "react-redux";
+import { openRegistrationComplete } from "../store/models/modelsSlice";
+import RegistrationCompleteModel from "../components/models/RegistrationCompleteModel";
 const { Link, Title, Text } = Typography;
 
 export default function SignUp() {
@@ -27,6 +30,9 @@ export default function SignUp() {
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const dispatch = useDispatch();
 
   const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -88,6 +94,7 @@ export default function SignUp() {
               console.log(response.data);
               message.success("User is registered successfully");
               navigate("/login");
+              dispatch(openRegistrationComplete());
               setEmail("");
               setPassword("");
               setConfirmPassword("");
@@ -96,6 +103,8 @@ export default function SignUp() {
         }catch(e){
           console.log(e.message);
           message.error(e.message);
+          setError(e.message);
+          dispatch(openRegistrationComplete())
           setEmail("");
           setPassword("");
           setConfirmPassword("");
@@ -104,6 +113,8 @@ export default function SignUp() {
        
     }else{
       message.error("Please fill all and try again!");
+      setError("Please fill all and try again!");
+      dispatch(openRegistrationComplete());
       setEmail("");
       setPassword("");
       setConfirmPassword("");
@@ -120,6 +131,7 @@ export default function SignUp() {
         align="middle"
         justify='center'
       >
+        <RegistrationCompleteModel error={error}/>
         <Col span={24}>
           <Row justify='center'>
             <Col span={10}>
