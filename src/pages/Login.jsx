@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 //import loginPic from '../assets/images/landing-1.png';
 
 
@@ -18,7 +18,7 @@ import {
 } from "antd";
 import { LogIn } from "../api/apiProviderService";
 import { tr } from "date-fns/locale";
-import RegistrationCompleteModel from "../components/models/RegistrationCompleteModel";
+import CustomNotifyModel from "../components/models/CustomNotifyModel";
 import { openRegistrationComplete } from "../store/models/modelsSlice";
 const {Link, Title, Text } = Typography;
 
@@ -31,6 +31,13 @@ export default function Login() {
 
     const [success, setSuccess] = useState(true);
     const [error, setError] = useState(null);
+    const [content, setContent] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const path = window.location.pathname;
+    const lastPathSegment = path.substring(path.lastIndexOf('/'));
+
+    let location = useLocation();
 
     const validateEmail = (email) => {
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -44,6 +51,14 @@ export default function Login() {
     };
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const onOpenErrorModel =()=>{
+      setIsOpen(true);
+    }
+
+    const onCloseErrorModel =()=>{
+      setIsOpen(false);
+    }
 ;
     
     const submitHandler = async () => {
@@ -65,20 +80,31 @@ export default function Login() {
               localStorage.setItem("IS_LOGGED_IN", true);
               localStorage.setItem("USER", JSON.stringify(response.data.result.systemUser));
               localStorage.setItem("USER_ID", response.data.result.systemUser.id);
+              dispatch(openRegistrationComplete())
               window.location.href = "resume";              
               setEmail('');
               setPassword('');
               setLoading(false);
             }
           }catch(e){
-            console.log(e.message);
-            message.error("Invalid Usernae or password!");
-            setSuccess(false);
-            setError("Invalid Usernae or password!");
-            dispatch(openRegistrationComplete())
-            setEmail('');
-            setPassword('');
-            setLoading(false);
+            if(e.response.data.failure.description === "User is disabled"){
+              console.log(e, "Dula 1");
+              setSuccess(false);
+              setContent("Email is not verified! Please verify your email...");
+              onOpenErrorModel();
+              setEmail('');
+              setPassword('');
+              setLoading(false);
+            }else{
+              console.log(e, "Dula 2");
+              setSuccess(false);
+              setContent(e.response.data.failure.description);
+              onOpenErrorModel();
+              setEmail('');
+              setPassword('');
+              setLoading(false);
+            }
+            
           }
       }else{
         message.error("Email is invalid!");
@@ -91,8 +117,10 @@ export default function Login() {
   
   return (
     <>
+      {!content && <CustomNotifyModel title="Registration" content= {"Please check your email and verify"}  success={success}/>}
+      {content && <CustomNotifyModel title="Login" content= {content}  success={success} isOpen={isOpen} onClose={onCloseErrorModel}/>}
       <Row className="login-main" align='middle'>
-        <RegistrationCompleteModel success={success} error={error}/>
+
         <Col span={24}>
           <Row align="middle" justify='center'>
             <Col span={10}   >

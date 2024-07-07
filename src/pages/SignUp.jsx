@@ -19,7 +19,7 @@ import {
 import { postData } from "../api/apiProviderService";
 import { useDispatch } from "react-redux";
 import { openRegistrationComplete } from "../store/models/modelsSlice";
-import RegistrationCompleteModel from "../components/models/RegistrationCompleteModel";
+import CustomNotifyModel from "../components/models/CustomNotifyModel";
 const { Link, Title, Text } = Typography;
 
 export default function SignUp() {
@@ -31,6 +31,12 @@ export default function SignUp() {
   const [passwordsMatch, setPasswordsMatch] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(true);
+  const [content, setContent] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+
+
 
   const dispatch = useDispatch();
 
@@ -63,6 +69,13 @@ export default function SignUp() {
    
   };
 
+  const onOpenErrorModel =()=>{
+    setIsOpen(true);
+  }
+
+  const onCloseErrorModel =()=>{
+    setIsOpen(false);
+  }
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
     setPassword(newPassword);
@@ -93,6 +106,7 @@ export default function SignUp() {
             if(response.data.success){
               console.log(response.data);
               message.success("User is registered successfully");
+              setContent("Regitration is successfull. Please check email to verify")
               navigate("/login");
               dispatch(openRegistrationComplete());
               setEmail("");
@@ -103,8 +117,9 @@ export default function SignUp() {
         }catch(e){
           console.log(e.message);
           message.error(e.message);
-          setError(e.message);
-          dispatch(openRegistrationComplete())
+          setContent(e.response.data.failure.description);
+          setSuccess(false);
+          onOpenErrorModel();
           setEmail("");
           setPassword("");
           setConfirmPassword("");
@@ -114,9 +129,9 @@ export default function SignUp() {
     }else{
       message.error("Please fill all and try again!");
       setError("Please fill all and try again!");
-      dispatch(openRegistrationComplete());
       setEmail("");
       setPassword("");
+      onCloseErrorModel();
       setConfirmPassword("");
       setLoading(false);
     }
@@ -131,7 +146,7 @@ export default function SignUp() {
         align="middle"
         justify='center'
       >
-        <RegistrationCompleteModel error={error}/>
+        <CustomNotifyModel title={"Registration"} success={success} content={content} isOpen={isOpen} onClose={onCloseErrorModel}/>
         <Col span={24}>
           <Row justify='center'>
             <Col span={10}>

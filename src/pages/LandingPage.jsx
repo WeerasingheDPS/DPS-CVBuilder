@@ -9,7 +9,7 @@ import LandingHome from "./landing/LandingHome";
 export default function LandingPage() {
   return (
     <>
-    <Row style={{backgroundColor:'#F0EEEB', minHeight:'85vh'}}>
+    <Row style={{backgroundColor:'#F0EEEB', minHeight:'85vh'}} >
        <Col id="1home" span={24}>
         <LandingHome/>
        </Col>
