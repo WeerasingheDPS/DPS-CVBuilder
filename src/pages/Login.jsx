@@ -87,7 +87,7 @@ export default function Login() {
               setLoading(false);
             }
           }catch(e){
-            if(e.response.data.failure.description === "User is disabled"){
+            if(e?.response?.data?.failure.description === "User is disabled"){
               console.log(e, "Dula 1");
               setSuccess(false);
               setContent("Email is not verified! Please verify your email...");
@@ -98,7 +98,7 @@ export default function Login() {
             }else{
               console.log(e, "Dula 2");
               setSuccess(false);
-              setContent(e.response.data.failure.description);
+              setContent(e?.response?.data?.failure.description);
               onOpenErrorModel();
               setEmail('');
               setPassword('');
@@ -117,8 +117,8 @@ export default function Login() {
   
   return (
     <>
-      {!content && <CustomNotifyModel title="Registration" content= {"Please check your email and verify"}  success={success}/>}
-      {content && <CustomNotifyModel title="Login" content= {content}  success={success} isOpen={isOpen} onClose={onCloseErrorModel}/>}
+      <CustomNotifyModel title="Registration" content= {"Please check your email and verify"}  success={success}/>
+      <CustomNotifyModel title="Login" content= {content}  success={success} isOpen={isOpen} onClose={onCloseErrorModel}/>
       <Row className="login-main" align='middle'>
 
         <Col span={24}>

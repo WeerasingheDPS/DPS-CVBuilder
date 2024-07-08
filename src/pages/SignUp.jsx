@@ -117,7 +117,7 @@ export default function SignUp() {
         }catch(e){
           console.log(e.message);
           message.error(e.message);
-          setContent(e.response.data.failure.description);
+          setContent(e?.response?.data?.failure.description);
           setSuccess(false);
           onOpenErrorModel();
           setEmail("");
