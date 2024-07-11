@@ -18,14 +18,15 @@ import { closeRegistrationComplete } from "../../store/models/modelsSlice";
 
 const { Title, Text, Link } = Typography;
 
-export default function CustomNotifyModel({ title, content, success, onClose, isOpen }) {
+export default function CustomNotifyModel({ login, title, content, success, onClose, isOpen }) {
   const dispatch = useDispatch();
+  const inIsOpen = useSelector((state)=>state.models.registrationComplete);
   return (
     <>
       <Modal
         centered
-        open={isOpen}
-        onCancel={onClose}
+        open={login? inIsOpen : isOpen}
+        onCancel={login? () => dispatch(closeRegistrationComplete()) : onClose}
         footer={[]}
       >
         <Row gutter={[0, 0]} justify="center" style={{ padding: "2%" }}>

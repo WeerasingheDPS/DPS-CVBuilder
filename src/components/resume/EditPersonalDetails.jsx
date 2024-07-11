@@ -36,6 +36,7 @@ import { closeAddLink, closeLoading, closeViewEditDetails, openAddLink, openLoad
 import { 
    postData } from "../../api/apiProviderService";
 import { setAddress, setDiscode, setDiscodeLabel, setEmail, setGitHub, setGitHubLabel, setLinkedIn, setLinkedInLabel, setName, setPersonalData, setPhone, setProfilePicture, setTitle, setTwitter, setTwitterLabel, setWebsite, setWebsiteLabel } from "../../store/resume/resumeSclice";
+import { te } from "date-fns/locale";
 const { Title, Text, Link } = Typography;
 export default function EditPersonalDetails() {
   const dispatch = useDispatch();
@@ -174,67 +175,82 @@ export default function EditPersonalDetails() {
   }
   const handleSubmit =async()=>{
     dispatch(openLoading());
-    let temp = personalData.profilePicture;
-    if (imageUpload) {
-      const imageRef = ref(storage, `dps-cv-builder/profile-photos/${userId}`);
-      await uploadBytes(imageRef, imageUpload)
-        .then(() => {
-          console.log(imageUpload);
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
 
-      await getDownloadURL(imageRef)
-        .then((url) => {
-          temp = url;
-          setProfilePicture(url);
-          console.log(temp);
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
-    }
-    let sendData ={
-     name: personalData.name,
-     profilePicture:temp,
-     phone: personalData.phone,
-     jobTitle: personalData.jobTitle,
-     email: personalData.email,
-     address: personalData.address,
-     linkedInLabel:personalData.linkedInLabel,
-     twitterLabel:personalData.twitterLabel,
-     githubLabel:personalData.githubLabel,
-     websiteLabel:personalData.websiteLabel,
-     discordLabel:personalData.discodeLabel,
-     linkedIn:personalData.linkedIn,
-     twitter:personalData.twitter,
-     github:personalData.github,
-     website:personalData. website,
-     discord:personalData.discode,
-    }
-    let data = {
-      url: `resume/personal_data/${userId}`,
-      data: sendData,
-    };
-    try {
-      const response = await postData(data);
-      if (response.status === 201) {
-        dispatch(closeLoading());
-        dispatch(closeViewEditDetails());
-       // dispatch(setPersonalData(sendData));
-        message.success("Successfully Updated");
-      } else {
-        dispatch(closeLoading());
-        dispatch(closeViewEditDetails());
-        message.error("Data is invalid! Try again!");
+    let temp = null;
+    let isUpload = false;
+
+    const uploadImage = async()=>{
+      if (imageUpload) {
+        const imageRef = ref(storage, `dps-cv-builder/profile-photos/${userId}`);
+        await uploadBytes(imageRef, imageUpload)
+          .then(() => {
+            console.log(imageUpload);
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
+  
+        await getDownloadURL(imageRef)
+          .then((url) => {
+            temp = url;
+            dispatch(setProfilePicture(url));
+            isUpload = true;
+            console.log(temp);
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
       }
-    } catch (e) {
+    }
+
+    await uploadImage();     
+
+   if((imageUpload != null && isUpload && temp) || imageUpload == null){
+    let sendData ={
+      name: personalData.name,
+      profilePicture: temp? temp :personalData.profilePicture,
+      phone:personalData.phone,
+      jobTitle: personalData.jobTitle,
+      email: personalData.email,
+      address: personalData.address,
+      linkedInLabel:personalData.linkedInLabel,
+      twitterLabel:personalData.twitterLabel,
+      githubLabel:personalData.githubLabel,
+      websiteLabel:personalData.websiteLabel,
+      discordLabel:personalData.discodeLabel,
+      linkedIn:personalData.linkedIn,
+      twitter:personalData.twitter,
+      github:personalData.github,
+      website:personalData. website,
+      discord:personalData.discode,
+     }
+     let data = {
+       url: `resume/personal_data/${userId}`,
+       data: sendData,
+     };
+     try {
+       const response = await postData(data);
+       if (response.status === 201) {
+         dispatch(closeLoading());
+         dispatch(closeViewEditDetails());
+        // dispatch(setPersonalData(sendData));
+         message.success("Successfully Updated");
+       } else {
+         dispatch(closeLoading());
+         dispatch(closeViewEditDetails());
+         message.error("Data is invalid! Try again!");
+       }
+     } catch (e) {
+       dispatch(closeLoading());
+       dispatch(closeViewEditDetails());
+       console.log(e);
+       message.error(e.message);
+     }
+   }else{
       dispatch(closeLoading());
       dispatch(closeViewEditDetails());
-      console.log(e);
-      message.error(e.message);
-    }
+      message.error("Data is invalid! Try again!");
+   }
   }
 
   const InputLink = ({id}) => {

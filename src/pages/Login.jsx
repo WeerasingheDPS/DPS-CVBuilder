@@ -117,7 +117,7 @@ export default function Login() {
   
   return (
     <>
-      <CustomNotifyModel title="Registration" content= {"Please check your email and verify"}  success={success}/>
+      <CustomNotifyModel login = {true} title="Registration" content= {"Please check your email and verify"}  success={success}/>
       <CustomNotifyModel title="Login" content= {content}  success={success} isOpen={isOpen} onClose={onCloseErrorModel}/>
       <Row className="login-main" align='middle'>
 
