@@ -34,6 +34,8 @@ export default function Login() {
     const [content, setContent] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
 
+    const setIsLoginOpen = useSelector((state)=>state.models.registrationComplete);
+
     const path = window.location.pathname;
     const lastPathSegment = path.substring(path.lastIndexOf('/'));
 
@@ -80,7 +82,7 @@ export default function Login() {
               localStorage.setItem("IS_LOGGED_IN", true);
               localStorage.setItem("USER", JSON.stringify(response.data.result.systemUser));
               localStorage.setItem("USER_ID", response.data.result.systemUser.id);
-              dispatch(openRegistrationComplete())
+              //dispatch(openRegistrationComplete());
               window.location.href = "resume";              
               setEmail('');
               setPassword('');
@@ -117,7 +119,7 @@ export default function Login() {
   
   return (
     <>
-      <CustomNotifyModel login = {true} title="Registration" content= {"Please check your email and verify"}  success={success}/>
+      <CustomNotifyModel login = {setIsLoginOpen} title="Registration" content= {"Please check your email and verify"}  success={success}/>
       <CustomNotifyModel title="Login" content= {content}  success={success} isOpen={isOpen} onClose={onCloseErrorModel}/>
       <Row className="login-main" align='middle'>
 
